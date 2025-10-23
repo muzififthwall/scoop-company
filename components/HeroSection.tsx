@@ -31,41 +31,58 @@ export function HeroSection() {
           <div className="text-center md:text-left space-y-6">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#FF8C42]/20 rounded-full border-2 border-[#FF8C42]/30">
               <Sparkles className="w-4 h-4 text-[#FF8C42]" />
-              <span className="text-sm" style={{ color: '#030213' }}>Limited Seats Available</span>
+              <span className="text-sm" style={{ color: '#1F1B24' }}>Limited Seats Available</span>
             </div>
-            
-            <h1 className="text-5xl md:text-6xl lg:text-7xl" style={{ fontWeight: 800, lineHeight: '1.1', color: '#030213' }}>
-              Scoop & Scream 🍨🎬
+
+            <h1 className="text-5xl md:text-6xl lg:text-7xl" style={{ fontWeight: 800, lineHeight: '1.1', color: '#1F1B24' }}>
+              Scoop & Scream 🎬🍦
             </h1>
-            
-            <p className="text-2xl md:text-3xl" style={{ color: '#F38DB5', fontWeight: 600 }}>
-              Halloween Movie Night
-            </p>
-            
-            <p className="text-xl max-w-xl" style={{ color: '#030213' }}>
-              <span style={{ fontWeight: 600 }}>£10 per person</span> — Any dessert + Any drink + One frightfully sweet night
+
+            <p className="text-xl md:text-2xl max-w-xl" style={{ color: '#1F1B24', lineHeight: '1.6' }}>
+              Family movie nights just got delicious. Choose your ticket and join us for spooky films, desserts & good vibes.
             </p>
 
-            <Button 
-              onClick={scrollToTickets}
-              className="text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-              style={{ background: '#F8AFC8', color: '#030213', fontWeight: 600 }}
-            >
-              Get Your Ticket 🎟️
-            </Button>
+            {/* Ticket CTAs */}
+            <div className="space-y-3 pt-4">
+              <Button
+                onClick={scrollToTickets}
+                className="w-full md:w-auto text-base px-6 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                style={{ background: '#F8AFC8', color: '#1F1B24', fontWeight: 600 }}
+              >
+                🎟️ Kids — £10 <span className="ml-2 opacity-80">All desserts & drinks</span>
+              </Button>
+
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button
+                  onClick={scrollToTickets}
+                  className="w-full sm:w-auto text-base px-6 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-2"
+                  style={{ background: 'white', color: '#1F1B24', borderColor: '#F8AFC8', fontWeight: 600 }}
+                >
+                  🎟️ Adults — £5 <span className="ml-2 opacity-80">Drink only</span>
+                </Button>
+
+                <Button
+                  onClick={scrollToTickets}
+                  className="w-full sm:w-auto text-base px-6 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                  style={{ background: '#FF8C42', color: 'white', fontWeight: 600 }}
+                >
+                  🎟️ Adults — £10 <span className="ml-2 opacity-90">Full treat</span>
+                </Button>
+              </div>
+            </div>
           </div>
 
           {/* Right content - Image */}
           <div className="relative">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500">
-              <img 
+              <img
                 src="https://images.unsplash.com/photo-1624217594096-c9130ebf6c36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaW5rJTIwaWNlJTIwY3JlYW0lMjBnZWxhdG8lMjBjb25lfGVufDF8fHx8MTc2MTI1MDE5OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                 alt="Pink gelato cone"
                 className="w-full h-[500px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             </div>
-            
+
             {/* Decorative elements around image */}
             <div className="absolute -top-6 -right-6 w-20 h-20 rounded-full bg-[#FF8C42] opacity-80 blur-xl"></div>
             <div className="absolute -bottom-6 -left-6 w-24 h-24 rounded-full bg-[#F38DB5] opacity-80 blur-xl"></div>
