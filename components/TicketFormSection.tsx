@@ -124,11 +124,11 @@ export function TicketFormSection() {
                     <SelectValue placeholder="Choose a date" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Monday 27 Oct — 6:00pm">Monday, October 27th - 6PM</SelectItem>
-                    <SelectItem value="Tuesday 28 Oct — 6:00pm">Tuesday, October 28th - 6PM</SelectItem>
-                    <SelectItem value="Wednesday 29 Oct — 6:00pm">Wednesday, October 29th - 6PM</SelectItem>
-                    <SelectItem value="Thursday 30 Oct — 6:00pm">Thursday, October 30th - 6PM</SelectItem>
-                    <SelectItem value="Friday 31 Oct — 6:00pm">Friday, October 31st - 6PM</SelectItem>
+                    <SelectItem value="Monday 27 Oct — 4:45pm">Monday, October 27th - 4:45PM</SelectItem>
+                    <SelectItem value="Tuesday 28 Oct — 4:45pm">Tuesday, October 28th - 4:45PM</SelectItem>
+                    <SelectItem value="Wednesday 29 Oct — 4:45pm">Wednesday, October 29th - 4:45PM</SelectItem>
+                    <SelectItem value="Thursday 30 Oct — 4:45pm">Thursday, October 30th - 4:45PM</SelectItem>
+                    <SelectItem value="Friday 31 Oct — 4:45pm">Friday, October 31st - 4:45PM</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
