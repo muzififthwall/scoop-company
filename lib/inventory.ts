@@ -3,35 +3,20 @@ import { kv } from '@vercel/kv';
 // Event nights configuration
 export const EVENT_NIGHTS = [
   {
-    key: 'monday_27_oct_2025',
-    displayName: 'Monday, October 27th - 4:45PM',
-    value: 'Monday 27 Oct — 4:45pm',
-  },
-  {
-    key: 'tuesday_28_oct_2025',
-    displayName: 'Tuesday, October 28th - 4:45PM',
-    value: 'Tuesday 28 Oct — 4:45pm',
-  },
-  {
     key: 'wednesday_29_oct_2025',
-    displayName: 'Wednesday, October 29th - 4:45PM',
-    value: 'Wednesday 29 Oct — 4:45pm',
+    displayName: 'Wednesday, October 29th - 5:30PM',
+    value: 'Wednesday 29 Oct — 5:30pm',
   },
   {
     key: 'thursday_30_oct_2025',
-    displayName: 'Thursday, October 30th - 4:45PM',
-    value: 'Thursday 30 Oct — 4:45pm',
-  },
-  {
-    key: 'friday_31_oct_2025',
-    displayName: 'Friday, October 31st - 4:45PM',
-    value: 'Friday 31 Oct — 4:45pm',
+    displayName: 'Thursday, October 30th - 5:30PM',
+    value: 'Thursday 30 Oct — 5:30pm',
   },
 ] as const;
 
 export const MAX_KID_TICKETS = 15;
 export const MAX_ADULT_TICKETS = 15;
-export const RESERVATION_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutes
+export const RESERVATION_TIMEOUT_MS = 10 * 60 * 1000; // 10 minutes
 
 // Types
 export interface InventoryData {
@@ -277,14 +262,11 @@ export async function cleanupExpiredReservations(): Promise<number> {
 export async function initializeInventory(): Promise<void> {
   for (const night of EVENT_NIGHTS) {
     const key = `inventory:${night.key}`;
-    const existing = await kv.get(key);
-
-    if (!existing) {
-      await kv.set(key, {
-        kid_tickets_sold: 0,
-        adult_drink_tickets_sold: 0,
-        adult_full_tickets_sold: 0,
-      });
-    }
+    // Always overwrite to ensure fresh start for new dates
+    await kv.set(key, {
+      kid_tickets_sold: 0,
+      adult_drink_tickets_sold: 0,
+      adult_full_tickets_sold: 0,
+    });
   }
 }

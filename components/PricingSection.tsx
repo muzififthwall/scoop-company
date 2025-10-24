@@ -117,7 +117,7 @@ export function PricingSection() {
             <Card className="p-6 bg-white/80 backdrop-blur-sm text-center">
               <div className="text-3xl mb-2">🗓</div>
               <h4 style={{ fontWeight: 700, color: '#1F1B24' }}>When</h4>
-              <p style={{ color: '#717182' }}>Mon 27th – Fri 31st Oct</p>
+              <p style={{ color: '#717182' }}>Wed 29th – Thu 30th Oct</p>
             </Card>
 
             <Card className="p-6 bg-white/80 backdrop-blur-sm text-center">
@@ -129,7 +129,7 @@ export function PricingSection() {
             <Card className="p-6 bg-white/80 backdrop-blur-sm text-center">
               <div className="text-3xl mb-2">🕕</div>
               <h4 style={{ fontWeight: 700, color: '#1F1B24' }}>Time</h4>
-              <p style={{ color: '#717182' }}>Seating 4:45PM · Film starts 5:00PM</p>
+              <p style={{ color: '#717182' }}>Seating 5:30PM · Film starts 5:45PM</p>
             </Card>
           </div>
         </div>
