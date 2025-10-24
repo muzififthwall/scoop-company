@@ -21,34 +21,26 @@ export function Footer() {
               <p style={{ fontWeight: 600, color: '#030213' }}>Order Online</p>
               <div className="flex gap-4">
                 <a 
-                  href="#deliveroo" 
+                  href="https://deliveroo.co.uk/menu/london/warlingham/the-scoop-company-369-limpsfield-road" 
                   className="px-4 py-2 bg-white rounded-full hover:shadow-lg transition-shadow flex items-center gap-2"
                   style={{ color: '#030213' }}
                 >
                   <ExternalLink className="w-4 h-4" />
                   Deliveroo
                 </a>
-                <a 
-                  href="#ubereats" 
-                  className="px-4 py-2 bg-white rounded-full hover:shadow-lg transition-shadow flex items-center gap-2"
-                  style={{ color: '#030213' }}
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  Uber Eats
-                </a>
               </div>
             </div>
 
             {/* Social */}
             <div className="flex flex-col items-center md:items-end gap-3">
-              <p style={{ fontWeight: 600, color: '#030213' }}>Follow Us</p>
+              <p className="w-full text-center" style={{ fontWeight: 600, color: '#030213' }}>Follow Us</p>
               <a 
-                href="#instagram" 
+                href="https://www.instagram.com/thescoopcompany_/" 
                 className="flex items-center gap-2 px-6 py-3 bg-white rounded-full hover:shadow-lg transition-all transform hover:scale-105"
                 style={{ color: '#030213' }}
               >
                 <Instagram className="w-5 h-5" />
-                <span style={{ fontWeight: 600 }}>@thescoopcompany</span>
+                <span style={{ fontWeight: 600 }}>@thescoopcompany_</span>
               </a>
             </div>
           </div>

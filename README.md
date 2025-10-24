@@ -130,7 +130,7 @@ scoop-company/
 ## Support
 
 For questions or issues:
-- Email: hello@thescoopcompany.co.uk
+- Email: thescoopcompany@mail.com
 - Instagram: [@thescoopcompany_](https://instagram.com/thescoopcompany_)
 
 ## Tech Stack

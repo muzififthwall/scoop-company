@@ -119,11 +119,11 @@ function SuccessContent() {
               <p className="text-sm" style={{ color: '#717182' }}>
                 Questions? Email us at{' '}
                 <a
-                  href="mailto:hello@thescoopcompany.co.uk"
+                  href="mailto:thescoopcompany@mail.com"
                   className="font-semibold hover:underline"
                   style={{ color: '#F38DB5' }}
                 >
-                  hello@thescoopcompany.co.uk
+                  thescoopcompany@mail.com
                 </a>
               </p>
             </div>

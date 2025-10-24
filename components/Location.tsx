@@ -24,8 +24,8 @@ export default function Location() {
             <h3 className="m-0 mb-1.5 font-bold text-lg">Questions?</h3>
             <div className="text-muted">
               Email{' '}
-              <a href="mailto:hello@thescoopcompany.co.uk" className="text-pink-deep hover:underline">
-                hello@thescoopcompany.co.uk
+              <a href="mailto:thescoopcompany@mail.com" className="text-pink-deep hover:underline">
+                thescoopcompany@mail.com
               </a>{' '}
               or DM us on Instagram{' '}
               <a
