@@ -308,11 +308,13 @@ export function TicketFormSection() {
               <div className="space-y-4 pt-4">
                 <div className="flex items-center justify-between">
                   <h3 style={{ fontWeight: 700, color: '#1F1B24' }}>Select Your Tickets</h3>
-                  <div className="text-sm" style={{ color: '#717182' }}>
-                    <span style={{ fontWeight: 600 }}>Kids: {getRemainingKids()}/15 left</span>
-                    {' · '}
-                    <span style={{ fontWeight: 600 }}>Adults: {getRemainingAdults()}/15 left</span>
-                  </div>
+                  {formData.date && (
+                    <div className="text-sm" style={{ color: '#717182' }}>
+                      <span style={{ fontWeight: 600 }}>Kids: {getRemainingKids()}/15 left</span>
+                      {' · '}
+                      <span style={{ fontWeight: 600 }}>Adults: {getRemainingAdults()}/15 left</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Kids Tickets */}
