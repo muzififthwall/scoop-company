@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
         price_data: {
           currency: 'gbp',
           product_data: {
-            name: 'Kids Ticket',
+            name: `Kids Ticket - ${night}`,
             description: 'Any dessert + any drink',
             images: ['https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=800'],
           },
@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
         price_data: {
           currency: 'gbp',
           product_data: {
-            name: 'Adult Ticket - Drink Only',
+            name: `Adult Ticket - Drink Only - ${night}`,
             description: 'Any drink',
             images: ['https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=800'],
           },
@@ -96,7 +96,7 @@ export async function POST(request: NextRequest) {
         price_data: {
           currency: 'gbp',
           product_data: {
-            name: 'Adult Ticket - Full Treat',
+            name: `Adult Ticket - Full Treat - ${night}`,
             description: 'Any dessert + any drink',
             images: ['https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=800'],
           },
@@ -122,6 +122,23 @@ export async function POST(request: NextRequest) {
         adult_drink_tickets: (adultDrinkTickets || 0).toString(),
         adult_full_tickets: (adultFullTickets || 0).toString(),
         temp_session_id: tempSessionId,
+      },
+      // IMPORTANT: Also attach metadata and email to the Payment Intent
+      // This ensures:
+      // 1. Stripe can send automatic receipt emails
+      // 2. Metadata is visible in Stripe Dashboard > Payments
+      // 3. Manual receipt sending is easier
+      payment_intent_data: {
+        metadata: {
+          customer_name: name,
+          event_night: night,
+          night_key: nightKey,
+          kid_tickets: kidTickets.toString(),
+          adult_drink_tickets: (adultDrinkTickets || 0).toString(),
+          adult_full_tickets: (adultFullTickets || 0).toString(),
+          temp_session_id: tempSessionId,
+        },
+        receipt_email: email,
       },
     });
 
