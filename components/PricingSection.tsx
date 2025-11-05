@@ -2,11 +2,12 @@
 
 import { Card } from "./ui/card";
 import { Check } from "lucide-react";
+import { TICKETS_SOLD_OUT } from "@/lib/inventory";
 
 const tickets = [
   {
     type: "👧 Kids",
-    price: "£10",
+    price: "£12",
     includes: "Any dessert + any drink",
     features: [
       "Full dessert menu access",
@@ -18,19 +19,7 @@ const tickets = [
   },
   {
     type: "🧑 Adults",
-    price: "£5",
-    includes: "Any drink",
-    features: [
-      "All hot & cold drinks",
-      "Coffee, tea, sodas",
-      "Hot chocolate included",
-      "Great for lighter option"
-    ],
-    color: "#FF8C42"
-  },
-  {
-    type: "🧑 Adults (Full Treat)",
-    price: "£10",
+    price: "£12",
     includes: "Any dessert + any drink",
     features: [
       "Full dessert menu access",
@@ -62,16 +51,23 @@ export function PricingSection() {
           </div>
 
           {/* Pricing Cards */}
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
+          <div className="grid md:grid-cols-2 gap-6 mb-12 max-w-4xl mx-auto">
             {tickets.map((ticket, index) => (
               <Card
                 key={index}
-                className={`relative p-6 bg-white border-2 transition-all hover:shadow-2xl cursor-pointer ${
+                className={`relative p-6 bg-white border-2 transition-all ${
+                  TICKETS_SOLD_OUT ? 'opacity-75 cursor-default' : 'hover:shadow-2xl cursor-pointer'
+                } ${
                   ticket.popular ? 'border-[#F38DB5] shadow-xl scale-105' : 'border-transparent hover:border-[#F8AFC8]'
                 }`}
-                onClick={scrollToTickets}
+                onClick={TICKETS_SOLD_OUT ? undefined : scrollToTickets}
               >
-                {ticket.popular && (
+                {TICKETS_SOLD_OUT && (
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 px-4 py-1 rounded-full text-sm z-20" style={{ background: '#1F1B24', color: 'white', fontWeight: 700 }}>
+                    SOLD OUT
+                  </div>
+                )}
+                {!TICKETS_SOLD_OUT && ticket.popular && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 px-4 py-1 rounded-full text-sm" style={{ background: '#F38DB5', color: 'white', fontWeight: 600 }}>
                     Most Popular
                   </div>
@@ -117,7 +113,7 @@ export function PricingSection() {
             <Card className="p-6 bg-white/80 backdrop-blur-sm text-center">
               <div className="text-3xl mb-2">🗓</div>
               <h4 style={{ fontWeight: 700, color: '#1F1B24' }}>When</h4>
-              <p style={{ color: '#717182' }}>Wed 29th – Thu 30th Oct</p>
+              <p style={{ color: '#717182' }}>11th Nov – 30th Dec</p>
             </Card>
 
             <Card className="p-6 bg-white/80 backdrop-blur-sm text-center">
@@ -129,7 +125,7 @@ export function PricingSection() {
             <Card className="p-6 bg-white/80 backdrop-blur-sm text-center">
               <div className="text-3xl mb-2">🕕</div>
               <h4 style={{ fontWeight: 700, color: '#1F1B24' }}>Time</h4>
-              <p style={{ color: '#717182' }}>Seating 5:30PM · Film starts 5:45PM</p>
+              <p style={{ color: '#717182' }}>Seating 5:00PM · Film starts 5:15PM</p>
             </Card>
           </div>
         </div>

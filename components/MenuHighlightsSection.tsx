@@ -3,20 +3,20 @@ import { Sparkles } from "lucide-react";
 
 const menuItems = [
   {
-    name: "S'mores Cone 🔥",
-    description: "Black cone, torched marshmallow, and chocolate drizzle — a little campfire magic in every bite.",
-    image: "/images/smores-cone.jpg",
+    name: "Rudolph Cone 🦌",
+    description: "Chocolate scoop topped with pretzel antlers and a red candy nose — the sweetest reindeer you'll ever meet.",
+    image: "/images/rudolph-cone.jpg",
     color: "#F8AFC8",
-    emoji: "🔥",
-    doodle: "✨"
+    emoji: "🦌",
+    doodle: "⭐"
   },
   {
-    name: "Black Cone with White Candy Floss 👻",
-    description: "Spooky, sweet, and seriously Insta-worthy — looks haunting, tastes heavenly.",
-    image: "/images/black-cone.jpg",
-    color: "#1F1B24",
-    emoji: "👻",
-    doodle: "🦇"
+    name: "Gingerbread Whippy 🍪✨",
+    description: "Soft-serve whippy piled high with Christmas sprinkles and mini gingerbread men — the taste of pure holiday joy.",
+    image: "/images/gingerbread-whippy.jpg",
+    color: "#165B33",
+    emoji: "🍪",
+    doodle: "🎄"
   },
   {
     name: "Deluxe Hot Chocolate ☕",
@@ -24,15 +24,15 @@ const menuItems = [
     image: "/images/hot-chocolate.jpg",
     color: "#F38DB5",
     emoji: "☕",
-    doodle: "☁️"
+    doodle: "❄️"
   },
   {
-    name: "5 Mini Cones 🍬",
-    description: "Five tiny cones stacked with fun — perfect for sharing (if you actually want to).",
-    image: "/images/mini-cones.jpg",
-    color: "#FF8C42",
-    emoji: "🍬",
-    doodle: "🍭"
+    name: "Christmas Tree Cone 🎄",
+    description: "A swirl of creamy green whippy in a black cone, finished with a golden star — the tree you actually want to eat.",
+    image: "/images/christmas-cone.jpg",
+    color: "#C41E3A",
+    emoji: "🎄",
+    doodle: "🎄"
   }
 ];
 
@@ -46,7 +46,7 @@ export function MenuHighlightsSection() {
               Menu Highlights
             </h2>
             <p className="text-xl" style={{ color: '#717182' }}>
-              Every ticket includes your pick from the menu — no spooky upsells.
+              Every ticket includes your pick from the menu — no sneaky upsells.
             </p>
           </div>
 

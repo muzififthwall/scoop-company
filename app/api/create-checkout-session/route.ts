@@ -8,7 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_placeholder'
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, night, kidTickets, adultDrinkTickets, adultFullTickets } = await request.json();
+    const { name, email, night, kidTickets, adultTickets } = await request.json();
 
     // Validate inputs
     if (!name || !email || !night) {
@@ -25,8 +25,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const totalAdults = (adultDrinkTickets || 0) + (adultFullTickets || 0);
-    if (totalAdults > 0 && kidTickets < 1) {
+    if ((adultTickets || 0) > 0 && kidTickets < 1) {
       return NextResponse.json(
         { error: 'Must have at least 1 kid ticket to book adult tickets' },
         { status: 400 }
@@ -46,7 +45,7 @@ export async function POST(request: NextRequest) {
     const tempSessionId = `temp_${Date.now()}_${Math.random().toString(36).substring(7)}`;
 
     // Reserve tickets before creating Stripe session
-    const reservationResult = await reserveTickets(nightKey, kidTickets, adultDrinkTickets || 0, adultFullTickets || 0, tempSessionId);
+    const reservationResult = await reserveTickets(nightKey, kidTickets, adultTickets || 0, tempSessionId);
 
     if (!reservationResult.success) {
       return NextResponse.json(
@@ -58,7 +57,7 @@ export async function POST(request: NextRequest) {
     // Create line items for Stripe
     const lineItems = [];
 
-    // Kids tickets - £10 each
+    // Kids tickets - £12 each
     if (kidTickets > 0) {
       lineItems.push({
         price_data: {
@@ -68,41 +67,25 @@ export async function POST(request: NextRequest) {
             description: 'Any dessert + any drink',
             images: ['https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=800'],
           },
-          unit_amount: 1000, // £10.00 in pence
+          unit_amount: 1200, // £12.00 in pence
         },
         quantity: kidTickets,
       });
     }
 
-    // Adult drink-only tickets - £5 each
-    if (adultDrinkTickets > 0) {
+    // Adult tickets - £12 each
+    if ((adultTickets || 0) > 0) {
       lineItems.push({
         price_data: {
           currency: 'gbp',
           product_data: {
-            name: `Adult Ticket - Drink Only - ${night}`,
-            description: 'Any drink',
-            images: ['https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=800'],
-          },
-          unit_amount: 500, // £5.00 in pence
-        },
-        quantity: adultDrinkTickets,
-      });
-    }
-
-    // Adult full treat tickets - £10 each
-    if (adultFullTickets > 0) {
-      lineItems.push({
-        price_data: {
-          currency: 'gbp',
-          product_data: {
-            name: `Adult Ticket - Full Treat - ${night}`,
+            name: `Adult Ticket - ${night}`,
             description: 'Any dessert + any drink',
             images: ['https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=800'],
           },
-          unit_amount: 1000, // £10.00 in pence
+          unit_amount: 1200, // £12.00 in pence
         },
-        quantity: adultFullTickets,
+        quantity: adultTickets,
       });
     }
 
@@ -119,8 +102,7 @@ export async function POST(request: NextRequest) {
         event_night: night,
         night_key: nightKey,
         kid_tickets: kidTickets.toString(),
-        adult_drink_tickets: (adultDrinkTickets || 0).toString(),
-        adult_full_tickets: (adultFullTickets || 0).toString(),
+        adult_tickets: (adultTickets || 0).toString(),
         temp_session_id: tempSessionId,
       },
       // IMPORTANT: Also attach metadata and email to the Payment Intent
@@ -134,8 +116,7 @@ export async function POST(request: NextRequest) {
           event_night: night,
           night_key: nightKey,
           kid_tickets: kidTickets.toString(),
-          adult_drink_tickets: (adultDrinkTickets || 0).toString(),
-          adult_full_tickets: (adultFullTickets || 0).toString(),
+          adult_tickets: (adultTickets || 0).toString(),
           temp_session_id: tempSessionId,
         },
         receipt_email: email,

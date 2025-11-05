@@ -20,8 +20,8 @@ export function Footer() {
             <div className="flex flex-col items-center gap-3">
               <p style={{ fontWeight: 600, color: '#030213' }}>Order Online</p>
               <div className="flex gap-4">
-                <a 
-                  href="https://deliveroo.co.uk/menu/london/warlingham/the-scoop-company-369-limpsfield-road" 
+                <a
+                  href="https://deliveroo.co.uk/menu/london/warlingham/the-scoop-company-369-limpsfield-road"
                   className="px-4 py-2 bg-white rounded-full hover:shadow-lg transition-shadow flex items-center gap-2"
                   style={{ color: '#030213' }}
                 >
@@ -34,8 +34,8 @@ export function Footer() {
             {/* Social */}
             <div className="flex flex-col items-center md:items-end gap-3">
               <p className="w-full text-center" style={{ fontWeight: 600, color: '#030213' }}>Follow Us</p>
-              <a 
-                href="https://www.instagram.com/thescoopcompany_/" 
+              <a
+                href="https://www.instagram.com/thescoopcompany_/"
                 className="flex items-center gap-2 px-6 py-3 bg-white rounded-full hover:shadow-lg transition-all transform hover:scale-105"
                 style={{ color: '#030213' }}
               >
@@ -48,7 +48,7 @@ export function Footer() {
           {/* Bottom bar */}
           <div className="mt-8 pt-6 border-t-2 border-white/30 text-center">
             <p style={{ color: '#030213' }}>
-              © 2025 The Scoop Company, Warlingham. All rights reserved. 🎃
+              © 2025 The Scoop Company, Warlingham. All rights reserved. 🎄
             </p>
           </div>
         </div>

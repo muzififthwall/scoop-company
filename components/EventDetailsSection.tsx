@@ -19,18 +19,18 @@ export function EventDetailsSection() {
                 </div>
                 <h3 className="text-2xl" style={{ fontWeight: 700, color: '#1F1B24' }}>What's On</h3>
                 <div className="space-y-2" style={{ color: '#717182' }}>
-                  <p style={{ fontWeight: 600 }}>Hocus Pocus</p>
-                  <p style={{ fontWeight: 600 }}>Casper</p>
-                  <p style={{ fontWeight: 600 }}>Hotel Transylvania</p>
+                  <p style={{ fontWeight: 600 }}>Home Alone</p>
+                  <p style={{ fontWeight: 600 }}>Elf</p>
+                  <p style={{ fontWeight: 600 }}>The Polar Express</p>
                   <p style={{ fontWeight: 600 }}>...and many more!</p>
                 </div>
               </div>
             </Card>
 
             {/* Where */}
-            <Card className="p-8 bg-white border-2 hover:border-[#FF8C42] transition-all hover:shadow-xl">
+            <Card className="p-8 bg-white border-2 hover:border-[#C41E3A] transition-all hover:shadow-xl">
               <div className="flex flex-col items-center text-center gap-4">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: '#FF8C42' }}>
+                <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: '#C41E3A' }}>
                   <MapPin className="w-8 h-8" style={{ color: '#FFFFFF' }} />
                 </div>
                 <h3 className="text-2xl" style={{ fontWeight: 700, color: '#1F1B24' }}>Where</h3>
@@ -50,9 +50,9 @@ export function EventDetailsSection() {
                 </div>
                 <h3 className="text-2xl" style={{ fontWeight: 700, color: '#1F1B24' }}>When</h3>
                 <div style={{ color: '#717182' }}>
-                  <p style={{ fontWeight: 600 }}>Wed 29th - Thu 30th Oct</p>
-                  <p>Seating 5:30PM</p>
-                  <p className="mt-2">Film starts 5:45PM</p>
+                  <p style={{ fontWeight: 600 }}>11th Nov - 30th Dec</p>
+                  <p>Seating 5:00PM</p>
+                  <p className="mt-2">Film starts 5:15PM</p>
                 </div>
               </div>
             </Card>
@@ -61,8 +61,8 @@ export function EventDetailsSection() {
           {/* Subtext */}
           <div className="mt-12 text-center p-6 rounded-2xl bg-white/60 backdrop-blur-sm border-2 border-[#F8AFC8]/30">
             <p className="text-lg" style={{ color: '#1F1B24' }}>
-              🎃 <span style={{ fontWeight: 600 }}>Family-friendly</span> • 
-              🎟️ <span style={{ fontWeight: 600 }}>Seats are limited</span> • 
+              🎄 <span style={{ fontWeight: 600 }}>Family-friendly</span> •
+              🎟️ <span style={{ fontWeight: 600 }}>Seats are limited</span> •
               ⏰ <span style={{ fontWeight: 600 }}>Book early!</span>
             </p>
           </div>

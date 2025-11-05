@@ -3,32 +3,107 @@ import { kv } from '@vercel/kv';
 // Event nights configuration
 export const EVENT_NIGHTS = [
   {
-    key: 'wednesday_29_oct_2025',
-    displayName: 'Wednesday, October 29th - 5:30PM',
-    value: 'Wednesday 29 Oct — 5:30pm',
+    key: '11-nov',
+    displayName: '🏙️ Tue 11 Nov - Home Alone 2 - 4:45PM',
+    value: 'Tuesday 11 Nov — 4:45pm',
+    movie: 'Home Alone 2'
   },
   {
-    key: 'thursday_30_oct_2025',
-    displayName: 'Thursday, October 30th - 5:30PM',
-    value: 'Thursday 30 Oct — 5:30pm',
+    key: '18-nov',
+    displayName: '💚 Tue 18 Nov - Grinch - 4:45PM',
+    value: 'Tuesday 18 Nov — 4:45pm',
+    movie: 'Grinch'
+  },
+  {
+    key: '19-nov',
+    displayName: '🎁 Wed 19 Nov - Arthur Christmas - 4:45PM',
+    value: 'Wednesday 19 Nov — 4:45pm',
+    movie: 'Arthur Christmas'
+  },
+  {
+    key: '26-nov',
+    displayName: '🚂 Wed 26 Nov - Polar Express - 4:45PM',
+    value: 'Wednesday 26 Nov — 4:45pm',
+    movie: 'Polar Express'
+  },
+  {
+    key: '27-nov',
+    displayName: '🧝‍♂️ Thu 27 Nov - Elf - 4:45PM',
+    value: 'Thursday 27 Nov — 4:45pm',
+    movie: 'Elf'
+  },
+  {
+    key: '3-dec',
+    displayName: '🎅 Wed 3 Dec - Christmas Chronicles - 4:45PM',
+    value: 'Wednesday 3 Dec — 4:45pm',
+    movie: 'Christmas Chronicles'
+  },
+  {
+    key: '4-dec',
+    displayName: '🧣 Thu 4 Dec - The Santa Clause - 4:45PM',
+    value: 'Thursday 4 Dec — 4:45pm',
+    movie: 'The Santa Clause'
+  },
+  {
+    key: '10-dec',
+    displayName: '🎶 Wed 10 Dec - Jingle Jangle - 4:45PM',
+    value: 'Wednesday 10 Dec — 4:45pm',
+    movie: 'Jingle Jangle'
+  },
+  {
+    key: '16-dec',
+    displayName: '💚 Tue 16 Dec - Cartoon Grinch - 4:45PM',
+    value: 'Tuesday 16 Dec — 4:45pm',
+    movie: 'Cartoon Grinch'
+  },
+  {
+    key: '18-dec',
+    displayName: '🏠 Thu 18 Dec - Home Alone - 4:45PM',
+    value: 'Thursday 18 Dec — 4:45pm',
+    movie: 'Home Alone'
+  },
+  {
+    key: '22-dec',
+    displayName: '🏙️ Mon 22 Dec - Home Alone 2 - 4:45PM',
+    value: 'Monday 22 Dec — 4:45pm',
+    movie: 'Home Alone 2'
+  },
+  {
+    key: '23-dec',
+    displayName: '🚂 Tue 23 Dec - Polar Express - 4:45PM',
+    value: 'Tuesday 23 Dec — 4:45pm',
+    movie: 'Polar Express'
+  },
+  {
+    key: '29-dec',
+    displayName: '🧝‍♂️ Mon 29 Dec - Elf - 4:45PM',
+    value: 'Monday 29 Dec — 4:45pm',
+    movie: 'Elf'
+  },
+  {
+    key: '30-dec',
+    displayName: '🤖 Tue 30 Dec - Jingle all the Way - 4:45PM',
+    value: 'Tuesday 30 Dec — 4:45pm',
+    movie: 'Jingle all the Way'
   },
 ] as const;
 
-export const MAX_KID_TICKETS = 15;
+export const MAX_KID_TICKETS = 20;
 export const MAX_ADULT_TICKETS = 15;
 export const RESERVATION_TIMEOUT_MS = 10 * 60 * 1000; // 10 minutes
+
+// Global sold out flag - set to true to disable all ticket sales
+export const TICKETS_SOLD_OUT = false;
 
 // Types
 export interface InventoryData {
   kid_tickets_sold: number;
-  adult_drink_tickets_sold: number;
-  adult_full_tickets_sold: number;
+  adult_tickets_sold: number;
 }
 
 export interface ReservationData {
   kidTickets: number;
-  adultDrinkTickets: number;
-  adultFullTickets: number;
+  adultTickets: number;
   nightKey: string;
   createdAt: number;
   sessionId: string;
@@ -39,8 +114,7 @@ export interface Availability {
   displayName: string;
   value: string;
   kidTicketsRemaining: number;
-  adultDrinkTicketsRemaining: number;
-  adultFullTicketsRemaining: number;
+  adultTicketsRemaining: number;
   isSoldOut: boolean;
 }
 
@@ -64,8 +138,7 @@ export async function getInventory(nightKey: string): Promise<InventoryData> {
     // If not found, return zero (uninitialized)
     return {
       kid_tickets_sold: 0,
-      adult_drink_tickets_sold: 0,
-      adult_full_tickets_sold: 0,
+      adult_tickets_sold: 0,
     };
   }
 
@@ -84,22 +157,17 @@ export async function getAvailability(nightKey: string): Promise<Availability> {
   // Get active reservations for this night
   const reservations = await getActiveReservations(nightKey);
   const reservedKids = reservations.reduce((sum, r) => sum + r.kidTickets, 0);
-  const reservedAdultDrink = reservations.reduce((sum, r) => sum + r.adultDrinkTickets, 0);
-  const reservedAdultFull = reservations.reduce((sum, r) => sum + r.adultFullTickets, 0);
+  const reservedAdults = reservations.reduce((sum, r) => sum + r.adultTickets, 0);
 
   const kidTicketsRemaining = MAX_KID_TICKETS - inventory.kid_tickets_sold - reservedKids;
-  // Adults are counted together (drink + full) with a combined limit of 15
-  const totalAdultSold = inventory.adult_drink_tickets_sold + inventory.adult_full_tickets_sold;
-  const totalAdultReserved = reservedAdultDrink + reservedAdultFull;
-  const totalAdultRemaining = MAX_ADULT_TICKETS - totalAdultSold - totalAdultReserved;
+  const adultTicketsRemaining = MAX_ADULT_TICKETS - inventory.adult_tickets_sold - reservedAdults;
 
   return {
     nightKey,
     displayName: nightInfo.displayName,
     value: nightInfo.value,
     kidTicketsRemaining: Math.max(0, kidTicketsRemaining),
-    adultDrinkTicketsRemaining: Math.max(0, totalAdultRemaining),
-    adultFullTicketsRemaining: Math.max(0, totalAdultRemaining),
+    adultTicketsRemaining: Math.max(0, adultTicketsRemaining),
     isSoldOut: kidTicketsRemaining <= 0,
   };
 }
@@ -134,8 +202,7 @@ async function getActiveReservations(nightKey: string): Promise<ReservationData[
 export async function reserveTickets(
   nightKey: string,
   kidTickets: number,
-  adultDrinkTickets: number,
-  adultFullTickets: number,
+  adultTickets: number,
   sessionId: string
 ): Promise<{ success: boolean; error?: string }> {
   // Validate inputs
@@ -143,12 +210,11 @@ export async function reserveTickets(
     return { success: false, error: 'Must book at least 1 kid ticket' };
   }
 
-  const totalAdults = adultDrinkTickets + adultFullTickets;
-  if (totalAdults > 0 && kidTickets < 1) {
+  if (adultTickets > 0 && kidTickets < 1) {
     return { success: false, error: 'Must have at least 1 kid ticket to book adult tickets' };
   }
 
-  if (kidTickets > 8 || adultDrinkTickets > 8 || adultFullTickets > 8) {
+  if (kidTickets > 8 || adultTickets > 8) {
     return { success: false, error: 'Maximum 8 tickets per type' };
   }
 
@@ -162,19 +228,17 @@ export async function reserveTickets(
     };
   }
 
-  // Check total adult availability (drink + full combined)
-  if (availability.adultDrinkTicketsRemaining < totalAdults) {
+  if (availability.adultTicketsRemaining < adultTickets) {
     return {
       success: false,
-      error: `Only ${availability.adultDrinkTicketsRemaining} adult ticket(s) remaining for this night`
+      error: `Only ${availability.adultTicketsRemaining} adult ticket(s) remaining for this night`
     };
   }
 
   // Create reservation
   const reservation: ReservationData = {
     kidTickets,
-    adultDrinkTickets,
-    adultFullTickets,
+    adultTickets,
     nightKey,
     createdAt: Date.now(),
     sessionId,
@@ -194,8 +258,7 @@ export async function reserveTickets(
 export async function confirmBooking(
   nightKey: string,
   kidTickets: number,
-  adultDrinkTickets: number,
-  adultFullTickets: number,
+  adultTickets: number,
   sessionId: string
 ): Promise<{ success: boolean; error?: string }> {
   try {
@@ -205,8 +268,7 @@ export async function confirmBooking(
     // Update inventory
     const newInventory: InventoryData = {
       kid_tickets_sold: inventory.kid_tickets_sold + kidTickets,
-      adult_drink_tickets_sold: inventory.adult_drink_tickets_sold + adultDrinkTickets,
-      adult_full_tickets_sold: inventory.adult_full_tickets_sold + adultFullTickets,
+      adult_tickets_sold: inventory.adult_tickets_sold + adultTickets,
     };
 
     // Save updated inventory
@@ -265,8 +327,7 @@ export async function initializeInventory(): Promise<void> {
     // Always overwrite to ensure fresh start for new dates
     await kv.set(key, {
       kid_tickets_sold: 0,
-      adult_drink_tickets_sold: 0,
-      adult_full_tickets_sold: 0,
+      adult_tickets_sold: 0,
     });
   }
 }

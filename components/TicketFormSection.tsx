@@ -8,18 +8,18 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { Card } from "./ui/card";
 import { Ticket, Sparkles, Minus, Plus, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
+import { TICKETS_SOLD_OUT } from "@/lib/inventory";
 
 interface Availability {
   nightKey: string;
   displayName: string;
   value: string;
   kidTicketsRemaining: number;
-  adultDrinkTicketsRemaining: number;
-  adultFullTicketsRemaining: number;
+  adultTicketsRemaining: number;
   isSoldOut: boolean;
 }
 
-const MAX_KIDS = 15;
+const MAX_KIDS = 20;
 const MAX_ADULTS = 15;
 
 export function TicketFormSection() {
@@ -28,8 +28,7 @@ export function TicketFormSection() {
     email: "",
     date: "",
     kidTickets: 0,
-    adultDrinkTickets: 0,
-    adultFullTickets: 0
+    adultTickets: 0
   });
   const [loading, setLoading] = useState(false);
   const [availabilities, setAvailabilities] = useState<Availability[]>([]);
@@ -75,14 +74,13 @@ export function TicketFormSection() {
   }, [formData.date, availabilities]);
 
   const calculateTotal = () => {
-    const kids = formData.kidTickets * 10;
-    const adultDrink = formData.adultDrinkTickets * 5;
-    const adultFull = formData.adultFullTickets * 10;
-    return kids + adultDrink + adultFull;
+    const kids = formData.kidTickets * 12;
+    const adults = formData.adultTickets * 12;
+    return kids + adults;
   };
 
   const getTotalTickets = () => {
-    return formData.kidTickets + formData.adultDrinkTickets + formData.adultFullTickets;
+    return formData.kidTickets + formData.adultTickets;
   };
 
   const getRemainingKids = () => {
@@ -90,7 +88,7 @@ export function TicketFormSection() {
   };
 
   const getRemainingAdults = () => {
-    return selectedNightAvailability ? selectedNightAvailability.adultDrinkTicketsRemaining : MAX_ADULTS;
+    return selectedNightAvailability ? selectedNightAvailability.adultTicketsRemaining : MAX_ADULTS;
   };
 
   const handleKidsChange = (increment: boolean) => {
@@ -101,7 +99,7 @@ export function TicketFormSection() {
       const newKids = formData.kidTickets - 1;
       // If removing last kid ticket, reset adult tickets to 0
       if (newKids === 0) {
-        setFormData({ ...formData, kidTickets: 0, adultDrinkTickets: 0, adultFullTickets: 0 });
+        setFormData({ ...formData, kidTickets: 0, adultTickets: 0 });
         toast.error("Adult tickets removed - at least one child ticket is required");
       } else {
         setFormData({ ...formData, kidTickets: newKids });
@@ -109,35 +107,18 @@ export function TicketFormSection() {
     }
   };
 
-  const handleAdultDrinkChange = (increment: boolean) => {
+  const handleAdultChange = (increment: boolean) => {
     if (formData.kidTickets === 0) {
       toast.error("Please add at least one child ticket to book adult seats");
       return;
     }
 
-    const totalAdults = formData.adultDrinkTickets + formData.adultFullTickets;
     const remaining = getRemainingAdults();
 
-    if (increment && totalAdults < Math.min(MAX_ADULTS, remaining)) {
-      setFormData({ ...formData, adultDrinkTickets: formData.adultDrinkTickets + 1 });
-    } else if (!increment && formData.adultDrinkTickets > 0) {
-      setFormData({ ...formData, adultDrinkTickets: formData.adultDrinkTickets - 1 });
-    }
-  };
-
-  const handleAdultFullChange = (increment: boolean) => {
-    if (formData.kidTickets === 0) {
-      toast.error("Please add at least one child ticket to book adult seats");
-      return;
-    }
-
-    const totalAdults = formData.adultDrinkTickets + formData.adultFullTickets;
-    const remaining = getRemainingAdults();
-
-    if (increment && totalAdults < Math.min(MAX_ADULTS, remaining)) {
-      setFormData({ ...formData, adultFullTickets: formData.adultFullTickets + 1 });
-    } else if (!increment && formData.adultFullTickets > 0) {
-      setFormData({ ...formData, adultFullTickets: formData.adultFullTickets - 1 });
+    if (increment && formData.adultTickets < Math.min(MAX_ADULTS, remaining)) {
+      setFormData({ ...formData, adultTickets: formData.adultTickets + 1 });
+    } else if (!increment && formData.adultTickets > 0) {
+      setFormData({ ...formData, adultTickets: formData.adultTickets - 1 });
     }
   };
 
@@ -172,8 +153,7 @@ export function TicketFormSection() {
           email: formData.email,
           night: formData.date,
           kidTickets: formData.kidTickets,
-          adultDrinkTickets: formData.adultDrinkTickets,
-          adultFullTickets: formData.adultFullTickets
+          adultTickets: formData.adultTickets
         }),
       });
 
@@ -196,14 +176,73 @@ export function TicketFormSection() {
     }
   };
 
+  // If tickets are sold out, show thank you message instead of form
+  if (TICKETS_SOLD_OUT) {
+    return (
+      <section id="tickets" className="py-20 relative overflow-hidden" style={{ background: '#FFE8F0' }}>
+        {/* Decorative background with candy and cone icons */}
+        <div className="absolute inset-0 opacity-5 pointer-events-none">
+          <div className="absolute top-20 left-10 text-9xl">🎄</div>
+          <div className="absolute bottom-20 right-20 text-9xl">🍦</div>
+          <div className="absolute top-1/2 left-1/4 text-7xl">❄️</div>
+          <div className="absolute top-32 right-16 text-6xl">🎁</div>
+        </div>
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-12 space-y-4">
+              <div className="inline-flex items-center gap-2 px-6 py-3 bg-[#1F1B24] text-white rounded-full">
+                <Ticket className="w-5 h-5" />
+                <span style={{ fontWeight: 700, fontSize: '1.1rem' }}>SOLD OUT</span>
+              </div>
+
+              <h2 className="text-4xl md:text-5xl" style={{ fontWeight: 800, color: '#1F1B24' }}>
+                Thank You! 🎉
+              </h2>
+              <p className="text-xl" style={{ color: '#717182' }}>
+                We've reached full capacity for both nights
+              </p>
+            </div>
+
+            <Card className="p-8 md:p-10 bg-white shadow-2xl border-2 border-[#F8AFC8]/30">
+              <div className="text-center space-y-6">
+                <div className="text-6xl mb-4">🍦</div>
+
+                <h3 className="text-2xl md:text-3xl" style={{ fontWeight: 700, color: '#1F1B24' }}>
+                  All Tickets Have Been Sold!
+                </h3>
+
+                <p className="text-lg" style={{ color: '#717182', lineHeight: '1.6' }}>
+                  We're overwhelmed by the amazing response! Thank you to everyone who secured their tickets.
+                  Both nights are now completely sold out.
+                </p>
+
+                <div className="p-5 rounded-xl mt-6" style={{ background: '#F8AFC8', border: '2px solid #F38DB5' }}>
+                  <p style={{ fontWeight: 600, color: '#1F1B24' }}>
+                    See you at Scoop Company! 🎄🎁
+                  </p>
+                </div>
+
+                <p className="text-sm pt-4" style={{ color: '#717182' }}>
+                  If you have any questions about your booking, please check your confirmation email
+                  or get in touch with us.
+                </p>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="tickets" className="py-20 relative overflow-hidden" style={{ background: '#FFE8F0' }}>
       {/* Decorative background with candy and cone icons */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
-        <div className="absolute top-20 left-10 text-9xl">🎃</div>
+        <div className="absolute top-20 left-10 text-9xl">🎄</div>
         <div className="absolute bottom-20 right-20 text-9xl">🍦</div>
-        <div className="absolute top-1/2 left-1/4 text-7xl">🍬</div>
-        <div className="absolute top-32 right-16 text-6xl">🧁</div>
+        <div className="absolute top-1/2 left-1/4 text-7xl">❄️</div>
+        <div className="absolute top-32 right-16 text-6xl">🎁</div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -294,10 +333,10 @@ export function TicketFormSection() {
                     <div>
                       <p style={{ fontWeight: 600, color: '#1F1B24' }}>Availability for this night:</p>
                       <p style={{ color: '#717182' }}>
-                        Kid tickets: {selectedNightAvailability.kidTicketsRemaining}/{15} remaining
+                        Kid tickets: {selectedNightAvailability.kidTicketsRemaining}/{MAX_KIDS} remaining
                       </p>
                       <p style={{ color: '#717182' }}>
-                        Adult tickets: {selectedNightAvailability.adultDrinkTicketsRemaining}/{15} remaining
+                        Adult tickets: {selectedNightAvailability.adultTicketsRemaining}/{MAX_ADULTS} remaining
                       </p>
                     </div>
                   </div>
@@ -310,9 +349,9 @@ export function TicketFormSection() {
                   <h3 style={{ fontWeight: 700, color: '#1F1B24' }}>Select Your Tickets</h3>
                   {formData.date && (
                     <div className="text-sm" style={{ color: '#717182' }}>
-                      <span style={{ fontWeight: 600 }}>Kids: {getRemainingKids()}/15 left</span>
+                      <span style={{ fontWeight: 600 }}>Kids: {getRemainingKids()}/{MAX_KIDS} left</span>
                       {' · '}
-                      <span style={{ fontWeight: 600 }}>Adults: {getRemainingAdults()}/15 left</span>
+                      <span style={{ fontWeight: 600 }}>Adults: {getRemainingAdults()}/{MAX_ADULTS} left</span>
                     </div>
                   )}
                 </div>
@@ -320,7 +359,7 @@ export function TicketFormSection() {
                 {/* Kids Tickets */}
                 <div className="p-4 rounded-xl border-2 border-[#F8AFC8]/30 bg-[#F8AFC8]/5">
                   <Label htmlFor="kidTickets" className="flex items-center justify-between mb-2">
-                    <span>👧 Kids Tickets (£10 each)</span>
+                    <span>👧 Kids Tickets (£12 each)</span>
                   </Label>
                   <p className="text-sm mb-3" style={{ color: '#717182' }}>Any dessert + any drink</p>
                   <div className="flex items-center gap-4">
@@ -338,7 +377,7 @@ export function TicketFormSection() {
                         {formData.kidTickets}
                       </div>
                       <div className="text-sm" style={{ color: '#717182' }}>
-                        {formData.kidTickets === 0 ? 'None' : `£${formData.kidTickets * 10}`}
+                        {formData.kidTickets === 0 ? 'None' : `£${formData.kidTickets * 12}`}
                       </div>
                     </div>
                     <Button
@@ -353,54 +392,10 @@ export function TicketFormSection() {
                   </div>
                 </div>
 
-                {/* Adult Drink Tickets */}
-                <div className={`p-4 rounded-xl border-2 border-[#FF8C42]/30 bg-[#FF8C42]/5 ${formData.kidTickets === 0 ? 'opacity-50' : ''}`}>
-                  <Label htmlFor="adultDrinkTickets" className="flex items-center justify-between mb-2">
-                    <span>🧑 Adults — Drink Only (£5 each)</span>
-                  </Label>
-                  <p className="text-sm mb-3" style={{ color: '#717182' }}>Any drink from the menu</p>
-                  {formData.kidTickets === 0 && (
-                    <div className="flex items-start gap-2 text-sm mb-3 px-3 py-2 rounded-lg" style={{ background: '#FFF3CD' }}>
-                      <AlertCircle className="w-4 h-4 mt-0.5" style={{ color: '#856404' }} />
-                      <p style={{ color: '#856404', fontWeight: 600 }}>
-                        Add at least one child ticket first
-                      </p>
-                    </div>
-                  )}
-                  <div className="flex items-center gap-4">
-                    <Button
-                      type="button"
-                      onClick={() => handleAdultDrinkChange(false)}
-                      disabled={formData.kidTickets === 0 || formData.adultDrinkTickets === 0 || loading}
-                      className="w-12 h-12 rounded-full disabled:opacity-30"
-                      style={{ background: '#FF8C42', color: 'white' }}
-                    >
-                      <Minus className="w-5 h-5" />
-                    </Button>
-                    <div className="flex-1 text-center">
-                      <div className="text-2xl" style={{ fontWeight: 700, color: '#1F1B24' }}>
-                        {formData.adultDrinkTickets}
-                      </div>
-                      <div className="text-sm" style={{ color: '#717182' }}>
-                        {formData.adultDrinkTickets === 0 ? 'None' : `£${formData.adultDrinkTickets * 5}`}
-                      </div>
-                    </div>
-                    <Button
-                      type="button"
-                      onClick={() => handleAdultDrinkChange(true)}
-                      disabled={formData.kidTickets === 0 || (formData.adultDrinkTickets + formData.adultFullTickets) >= Math.min(MAX_ADULTS, getRemainingAdults()) || loading}
-                      className="w-12 h-12 rounded-full disabled:opacity-30"
-                      style={{ background: '#FF8C42', color: 'white' }}
-                    >
-                      <Plus className="w-5 h-5" />
-                    </Button>
-                  </div>
-                </div>
-
-                {/* Adult Full Tickets */}
+                {/* Adult Tickets */}
                 <div className={`p-4 rounded-xl border-2 border-[#F38DB5]/40 bg-[#F38DB5]/5 ${formData.kidTickets === 0 ? 'opacity-50' : ''}`}>
-                  <Label htmlFor="adultFullTickets" className="flex items-center justify-between mb-2">
-                    <span>🧑 Adults — Full Treat (£10 each)</span>
+                  <Label htmlFor="adultTickets" className="flex items-center justify-between mb-2">
+                    <span>🧑 Adults (£12 each)</span>
                     <span className="text-xs px-2 py-1 rounded-full" style={{ background: '#F38DB5', color: 'white' }}>Popular</span>
                   </Label>
                   <p className="text-sm mb-3" style={{ color: '#717182' }}>Any dessert + any drink</p>
@@ -415,8 +410,8 @@ export function TicketFormSection() {
                   <div className="flex items-center gap-4">
                     <Button
                       type="button"
-                      onClick={() => handleAdultFullChange(false)}
-                      disabled={formData.kidTickets === 0 || formData.adultFullTickets === 0 || loading}
+                      onClick={() => handleAdultChange(false)}
+                      disabled={formData.kidTickets === 0 || formData.adultTickets === 0 || loading}
                       className="w-12 h-12 rounded-full disabled:opacity-30"
                       style={{ background: '#F38DB5', color: 'white' }}
                     >
@@ -424,16 +419,16 @@ export function TicketFormSection() {
                     </Button>
                     <div className="flex-1 text-center">
                       <div className="text-2xl" style={{ fontWeight: 700, color: '#1F1B24' }}>
-                        {formData.adultFullTickets}
+                        {formData.adultTickets}
                       </div>
                       <div className="text-sm" style={{ color: '#717182' }}>
-                        {formData.adultFullTickets === 0 ? 'None' : `£${formData.adultFullTickets * 10}`}
+                        {formData.adultTickets === 0 ? 'None' : `£${formData.adultTickets * 12}`}
                       </div>
                     </div>
                     <Button
                       type="button"
-                      onClick={() => handleAdultFullChange(true)}
-                      disabled={formData.kidTickets === 0 || (formData.adultDrinkTickets + formData.adultFullTickets) >= Math.min(MAX_ADULTS, getRemainingAdults()) || loading}
+                      onClick={() => handleAdultChange(true)}
+                      disabled={formData.kidTickets === 0 || formData.adultTickets >= Math.min(MAX_ADULTS, getRemainingAdults()) || loading}
                       className="w-12 h-12 rounded-full disabled:opacity-30"
                       style={{ background: '#F38DB5', color: 'white' }}
                     >

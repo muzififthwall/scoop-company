@@ -10,7 +10,7 @@ export function AboutSection() {
           </h2>
 
           <p className="text-xl max-w-2xl mx-auto" style={{ color: '#717182', lineHeight: '1.8' }}>
-            Join us for Scoop & Scream — a weekend of spooky fun, sweet desserts, and warm drinks inside our award-winning parlour. Watch Halloween classics while you indulge in our seasonal favourites. Perfect for kids, parents, and sweet-toothed ghosts alike.
+            Join us for Scoop & Sleigh — an event full of Christmas cheer, sweet desserts, and warm drinks inside our award-winning parlour. Watch Christmas classics while you indulge in our seasonal favourites. Perfect for kids, parents, and sweet-toothed elves alike.
           </p>
 
           {/* Icon grid */}
@@ -24,10 +24,10 @@ export function AboutSection() {
             </div>
 
             <div className="flex flex-col items-center gap-4 p-6 rounded-2xl bg-white shadow-md hover:shadow-xl transition-shadow">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: '#FF8C42' }}>
+              <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: '#C41E3A' }}>
                 <Film className="w-8 h-8" style={{ color: '#FFFFFF' }} />
               </div>
-              <h3 style={{ fontWeight: 700, color: '#1F1B24' }}>Halloween Classics</h3>
+              <h3 style={{ fontWeight: 700, color: '#1F1B24' }}>Christmas Classics</h3>
               <p style={{ color: '#717182' }}>Family-friendly favourites</p>
             </div>
 

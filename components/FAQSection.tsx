@@ -3,11 +3,11 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./
 const faqs = [
   {
     question: "Can I bring kids?",
-    answer: "Yes! We made this for families. Our movies are Halloween classics that everyone will enjoy."
+    answer: "Yes! We made this for families. Our movies are Christmas classics that everyone will enjoy."
   },
   {
     question: "What's included for adults?",
-    answer: "Pick your ticket: drink-only (£5) or full treat with dessert + drink (£10)."
+    answer: "Every adult ticket (£12) includes any dessert from the menu plus any drink. Same great experience as the kids!"
   },
   {
     question: "Can I pick my dessert now?",
@@ -37,7 +37,7 @@ export function FAQSection() {
               Frequently Asked Questions
             </h2>
             <p className="text-xl mt-4" style={{ color: '#717182' }}>
-              Everything you need to know 🎃
+              Everything you need to know 🎄
             </p>
           </div>
 

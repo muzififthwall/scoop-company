@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
           return NextResponse.json({ error: 'No metadata' }, { status: 400 });
         }
 
-        const { night_key, kid_tickets, adult_drink_tickets, adult_full_tickets, temp_session_id } = metadata;
+        const { night_key, kid_tickets, adult_tickets, temp_session_id } = metadata;
 
         if (!night_key || !kid_tickets || !temp_session_id) {
           console.error('Missing required metadata fields');
@@ -59,8 +59,7 @@ export async function POST(request: NextRequest) {
         const result = await confirmBooking(
           night_key,
           parseInt(kid_tickets),
-          parseInt(adult_drink_tickets || '0'),
-          parseInt(adult_full_tickets || '0'),
+          parseInt(adult_tickets || '0'),
           temp_session_id
         );
 

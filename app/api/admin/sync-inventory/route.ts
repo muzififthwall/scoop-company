@@ -11,8 +11,7 @@ interface SalesByNight {
   [nightKey: string]: {
     displayName: string;
     kidTickets: number;
-    adultDrinkTickets: number;
-    adultFullTickets: number;
+    adultTickets: number;
     sessionIds: string[];
   };
 }
@@ -63,8 +62,7 @@ export async function GET(request: NextRequest) {
       salesByNight[night.key] = {
         displayName: night.displayName,
         kidTickets: 0,
-        adultDrinkTickets: 0,
-        adultFullTickets: 0,
+        adultTickets: 0,
         sessionIds: [],
       };
     }
@@ -83,8 +81,18 @@ export async function GET(request: NextRequest) {
       // Only process if it's one of our event nights
       if (salesByNight[nightKey]) {
         salesByNight[nightKey].kidTickets += parseInt(metadata.kid_tickets || '0');
-        salesByNight[nightKey].adultDrinkTickets += parseInt(metadata.adult_drink_tickets || '0');
-        salesByNight[nightKey].adultFullTickets += parseInt(metadata.adult_full_tickets || '0');
+
+        // Handle both old (3-tier) and new (2-tier) ticket structures
+        if (metadata.adult_tickets) {
+          // New structure: single adult ticket type
+          salesByNight[nightKey].adultTickets += parseInt(metadata.adult_tickets || '0');
+        } else {
+          // Old structure: combine adult_drink_tickets and adult_full_tickets
+          const adultDrink = parseInt(metadata.adult_drink_tickets || '0');
+          const adultFull = parseInt(metadata.adult_full_tickets || '0');
+          salesByNight[nightKey].adultTickets += adultDrink + adultFull;
+        }
+
         salesByNight[nightKey].sessionIds.push(session.id);
       }
     }
@@ -111,20 +119,15 @@ export async function GET(request: NextRequest) {
         displayName: night.displayName,
         actualSales: {
           kidTickets: actual.kidTickets,
-          adultDrinkTickets: actual.adultDrinkTickets,
-          adultFullTickets: actual.adultFullTickets,
-          totalAdult: actual.adultDrinkTickets + actual.adultFullTickets,
+          adultTickets: actual.adultTickets,
         },
         currentInventory: {
           kidTickets: current?.kid_tickets_sold || 0,
-          adultDrinkTickets: current?.adult_drink_tickets_sold || 0,
-          adultFullTickets: current?.adult_full_tickets_sold || 0,
-          totalAdult: (current?.adult_drink_tickets_sold || 0) + (current?.adult_full_tickets_sold || 0),
+          adultTickets: current?.adult_tickets_sold || 0,
         },
         hasDiscrepancy:
           actual.kidTickets !== (current?.kid_tickets_sold || 0) ||
-          actual.adultDrinkTickets !== (current?.adult_drink_tickets_sold || 0) ||
-          actual.adultFullTickets !== (current?.adult_full_tickets_sold || 0),
+          actual.adultTickets !== (current?.adult_tickets_sold || 0),
         sessionCount: actual.sessionIds.length,
       };
     });
@@ -193,8 +196,7 @@ export async function POST(request: NextRequest) {
       salesByNight[night.key] = {
         displayName: night.displayName,
         kidTickets: 0,
-        adultDrinkTickets: 0,
-        adultFullTickets: 0,
+        adultTickets: 0,
         sessionIds: [],
       };
     }
@@ -211,8 +213,18 @@ export async function POST(request: NextRequest) {
 
       if (salesByNight[nightKey]) {
         salesByNight[nightKey].kidTickets += parseInt(metadata.kid_tickets || '0');
-        salesByNight[nightKey].adultDrinkTickets += parseInt(metadata.adult_drink_tickets || '0');
-        salesByNight[nightKey].adultFullTickets += parseInt(metadata.adult_full_tickets || '0');
+
+        // Handle both old (3-tier) and new (2-tier) ticket structures
+        if (metadata.adult_tickets) {
+          // New structure: single adult ticket type
+          salesByNight[nightKey].adultTickets += parseInt(metadata.adult_tickets || '0');
+        } else {
+          // Old structure: combine adult_drink_tickets and adult_full_tickets
+          const adultDrink = parseInt(metadata.adult_drink_tickets || '0');
+          const adultFull = parseInt(metadata.adult_full_tickets || '0');
+          salesByNight[nightKey].adultTickets += adultDrink + adultFull;
+        }
+
         salesByNight[nightKey].sessionIds.push(session.id);
       }
     }
@@ -225,8 +237,7 @@ export async function POST(request: NextRequest) {
 
       await kv.set(inventoryKey, {
         kid_tickets_sold: sales.kidTickets,
-        adult_drink_tickets_sold: sales.adultDrinkTickets,
-        adult_full_tickets_sold: sales.adultFullTickets,
+        adult_tickets_sold: sales.adultTickets,
       });
 
       updates.push({
@@ -234,8 +245,7 @@ export async function POST(request: NextRequest) {
         displayName: night.displayName,
         updated: {
           kidTickets: sales.kidTickets,
-          adultDrinkTickets: sales.adultDrinkTickets,
-          adultFullTickets: sales.adultFullTickets,
+          adultTickets: sales.adultTickets,
         },
         sessionCount: sales.sessionIds.length,
       });

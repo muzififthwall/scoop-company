@@ -6,11 +6,13 @@ import { MenuHighlightsSection } from "@/components/MenuHighlightsSection";
 import { TicketFormSection } from "@/components/TicketFormSection";
 import { FAQSection } from "@/components/FAQSection";
 import { Footer } from "@/components/Footer";
+import { Snowfall } from "@/components/Snowfall";
 import { Toaster } from "@/components/ui/sonner";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
+      <Snowfall />
       <HeroSection />
       <AboutSection />
       <PricingSection />

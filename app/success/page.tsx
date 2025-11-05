@@ -35,16 +35,16 @@ function SuccessContent() {
     <div className="min-h-screen flex items-center justify-center px-4 py-12 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #FFE8F0 0%, #FFF5F0 100%)' }}>
       {/* Decorative background elements */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
-        <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-[#FF8C42] blur-3xl"></div>
+        <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-[#C41E3A] blur-3xl"></div>
         <div className="absolute bottom-20 right-10 w-40 h-40 rounded-full bg-[#F8AFC8] blur-3xl"></div>
         <div className="absolute top-1/2 left-1/3 w-24 h-24 rounded-full bg-[#F38DB5] blur-2xl"></div>
       </div>
 
       {/* Floating decorative icons */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-24 left-[10%] text-4xl animate-bounce" style={{ animationDelay: '0s', animationDuration: '3s' }}>🎃</div>
+        <div className="absolute top-24 left-[10%] text-4xl animate-bounce" style={{ animationDelay: '0s', animationDuration: '3s' }}>🎄</div>
         <div className="absolute top-32 right-[15%] text-3xl animate-bounce" style={{ animationDelay: '1s', animationDuration: '4s' }}>🍦</div>
-        <div className="absolute bottom-32 left-[20%] text-3xl animate-bounce" style={{ animationDelay: '2s', animationDuration: '3.5s' }}>👻</div>
+        <div className="absolute bottom-32 left-[20%] text-3xl animate-bounce" style={{ animationDelay: '2s', animationDuration: '3.5s' }}>⛄</div>
       </div>
 
       <div className="max-w-2xl w-full relative z-10">
@@ -71,7 +71,7 @@ function SuccessContent() {
             </div>
 
             {/* Info Card */}
-            <div className="p-6 rounded-2xl space-y-3" style={{ background: 'linear-gradient(135deg, rgba(248, 175, 200, 0.2) 0%, rgba(255, 140, 66, 0.2) 100%)', border: '2px solid rgba(248, 175, 200, 0.3)' }}>
+            <div className="p-6 rounded-2xl space-y-3" style={{ background: 'linear-gradient(135deg, rgba(248, 175, 200, 0.2) 0%, rgba(196, 30, 58, 0.2) 100%)', border: '2px solid rgba(248, 175, 200, 0.3)' }}>
               <div className="flex items-center justify-center gap-2 mb-3">
                 <Sparkles className="w-5 h-5" style={{ color: '#F8AFC8' }} />
                 <p className="text-lg" style={{ fontWeight: 600, color: '#030213' }}>
@@ -89,15 +89,15 @@ function SuccessContent() {
                 </p>
                 <p className="flex items-start gap-2">
                   <span className="text-xl">🍨</span>
-                  <span>Get ready for a frightfully sweet evening!</span>
+                  <span>Get ready for a festive sweet evening!</span>
                 </p>
               </div>
             </div>
 
             {/* Details Note */}
-            <div className="p-4 rounded-xl" style={{ background: 'rgba(255, 140, 66, 0.1)', border: '1px solid rgba(255, 140, 66, 0.3)' }}>
+            <div className="p-4 rounded-xl" style={{ background: 'rgba(196, 30, 58, 0.1)', border: '1px solid rgba(196, 30, 58, 0.3)' }}>
               <p className="text-sm" style={{ color: '#030213' }}>
-                <strong>Remember:</strong> Your dessert and drink are included! Choose from our full menu when you arrive. 🎃
+                <strong>Remember:</strong> Your dessert and drink are included! Choose from our full menu when you arrive. 🎄
               </p>
             </div>
 
