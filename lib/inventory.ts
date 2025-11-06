@@ -4,86 +4,86 @@ import { kv } from '@vercel/kv';
 export const EVENT_NIGHTS = [
   {
     key: '11-nov',
-    displayName: '🏙️ Tue 11 Nov - Home Alone 2 - 4:45PM',
-    value: 'Tuesday 11 Nov — 4:45pm',
+    displayName: '🏙️ Tue 11 Nov - Home Alone 2 - 5:00PM',
+    value: 'Tuesday 11 Nov — 5:00pm',
     movie: 'Home Alone 2'
   },
   {
     key: '18-nov',
-    displayName: '💚 Tue 18 Nov - Grinch - 4:45PM',
-    value: 'Tuesday 18 Nov — 4:45pm',
+    displayName: '💚 Tue 18 Nov - Grinch - 5:00PM',
+    value: 'Tuesday 18 Nov — 5:00pm',
     movie: 'Grinch'
   },
   {
     key: '19-nov',
-    displayName: '🎁 Wed 19 Nov - Arthur Christmas - 4:45PM',
-    value: 'Wednesday 19 Nov — 4:45pm',
+    displayName: '🎁 Wed 19 Nov - Arthur Christmas - 5:00PM',
+    value: 'Wednesday 19 Nov — 5:00pm',
     movie: 'Arthur Christmas'
   },
   {
     key: '26-nov',
-    displayName: '🚂 Wed 26 Nov - Polar Express - 4:45PM',
-    value: 'Wednesday 26 Nov — 4:45pm',
+    displayName: '🚂 Wed 26 Nov - Polar Express - 5:00PM',
+    value: 'Wednesday 26 Nov — 5:00pm',
     movie: 'Polar Express'
   },
   {
     key: '27-nov',
-    displayName: '🧝‍♂️ Thu 27 Nov - Elf - 4:45PM',
-    value: 'Thursday 27 Nov — 4:45pm',
+    displayName: '🧝‍♂️ Thu 27 Nov - Elf - 5:00PM',
+    value: 'Thursday 27 Nov — 5:00pm',
     movie: 'Elf'
   },
   {
     key: '3-dec',
-    displayName: '🎅 Wed 3 Dec - Christmas Chronicles - 4:45PM',
-    value: 'Wednesday 3 Dec — 4:45pm',
+    displayName: '🎅 Wed 3 Dec - Christmas Chronicles - 5:00PM',
+    value: 'Wednesday 3 Dec — 5:00pm',
     movie: 'Christmas Chronicles'
   },
   {
     key: '4-dec',
-    displayName: '🧣 Thu 4 Dec - The Santa Clause - 4:45PM',
-    value: 'Thursday 4 Dec — 4:45pm',
+    displayName: '🧣 Thu 4 Dec - The Santa Clause - 5:00PM',
+    value: 'Thursday 4 Dec — 5:00pm',
     movie: 'The Santa Clause'
   },
   {
     key: '10-dec',
-    displayName: '🎶 Wed 10 Dec - Jingle Jangle - 4:45PM',
-    value: 'Wednesday 10 Dec — 4:45pm',
+    displayName: '🎶 Wed 10 Dec - Jingle Jangle - 5:00PM',
+    value: 'Wednesday 10 Dec — 5:00pm',
     movie: 'Jingle Jangle'
   },
   {
     key: '16-dec',
-    displayName: '💚 Tue 16 Dec - Cartoon Grinch - 4:45PM',
-    value: 'Tuesday 16 Dec — 4:45pm',
+    displayName: '💚 Tue 16 Dec - Cartoon Grinch - 5:00PM',
+    value: 'Tuesday 16 Dec — 5:00pm',
     movie: 'Cartoon Grinch'
   },
   {
     key: '18-dec',
-    displayName: '🏠 Thu 18 Dec - Home Alone - 4:45PM',
-    value: 'Thursday 18 Dec — 4:45pm',
+    displayName: '🏠 Thu 18 Dec - Home Alone - 5:00PM',
+    value: 'Thursday 18 Dec — 5:00pm',
     movie: 'Home Alone'
   },
   {
     key: '22-dec',
-    displayName: '🏙️ Mon 22 Dec - Home Alone 2 - 4:45PM',
-    value: 'Monday 22 Dec — 4:45pm',
+    displayName: '🏙️ Mon 22 Dec - Home Alone 2 - 5:00PM',
+    value: 'Monday 22 Dec — 5:00pm',
     movie: 'Home Alone 2'
   },
   {
     key: '23-dec',
-    displayName: '🚂 Tue 23 Dec - Polar Express - 4:45PM',
-    value: 'Tuesday 23 Dec — 4:45pm',
+    displayName: '🚂 Tue 23 Dec - Polar Express - 5:00PM',
+    value: 'Tuesday 23 Dec — 5:00pm',
     movie: 'Polar Express'
   },
   {
     key: '29-dec',
-    displayName: '🧝‍♂️ Mon 29 Dec - Elf - 4:45PM',
-    value: 'Monday 29 Dec — 4:45pm',
+    displayName: '🧝‍♂️ Mon 29 Dec - Elf - 5:00PM',
+    value: 'Monday 29 Dec — 5:00pm',
     movie: 'Elf'
   },
   {
     key: '30-dec',
-    displayName: '🤖 Tue 30 Dec - Jingle all the Way - 4:45PM',
-    value: 'Tuesday 30 Dec — 4:45pm',
+    displayName: '🤖 Tue 30 Dec - Jingle all the Way - 5:00PM',
+    value: 'Tuesday 30 Dec — 5:00pm',
     movie: 'Jingle all the Way'
   },
 ] as const;
