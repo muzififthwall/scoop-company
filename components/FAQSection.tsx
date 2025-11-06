@@ -2,28 +2,36 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./
 
 const faqs = [
   {
-    question: "Can I bring kids?",
-    answer: "Yes! We made this for families. Our movies are Christmas classics that everyone will enjoy."
+    question: "Can we bring babies?",
+    answer: "Absolutely! Babies under 1 are more than welcome — there's no ticket needed for them. We just ask that they stay seated with you during the movie so everyone can enjoy the festive fun. 👶✨"
   },
   {
-    question: "What's included for adults?",
-    answer: "Every adult ticket (£12) includes any dessert from the menu plus any drink. Same great experience as the kids!"
+    question: "Can Children come on their own?",
+    answer: "Yes! Children aged 13 and over are welcome to attend on their own."
   },
   {
-    question: "Can I pick my dessert now?",
-    answer: "Nope, choose on the night. Your ticket gives you access to any item from our menu when you arrive."
+    question: "Can kids sit with parents?",
+    answer: "Kids sit at the front, and parents just behind. This helps us maximise space and make sure the little ones have a clear view of the screen."
   },
   {
-    question: "What about refunds?",
-    answer: "Life happens. We'll happily move you to another night if you can't make it. Just let us know in advance!"
+    question: "Can I pick my dessert in advance?",
+    answer: "Yes, please! Check out our menu which you will receive in your email confirmation and decide before you arrive to help our team serve you faster."
   },
   {
-    question: "How long is each movie night?",
-    answer: "Each session runs approximately 90-120 minutes including the movie and dessert service. Perfect for a cosy family evening!"
+    question: "Do I need to print my ticket?",
+    answer: "Nope! Just give your name at the counter when you arrive — we'll have your booking ready."
   },
   {
-    question: "Do you have dietary options?",
-    answer: "Yes! We have dairy-free gelato, sorbets, and various drink options to accommodate different dietary needs."
+    question: "Can I change or cancel my booking?",
+    answer: "If you need to make any changes, please contact us at least 24 hours before your movie night."
+  },
+  {
+    question: "Do babies or toddlers need tickets?",
+    answer: "Only children aged 1 and over need a ticket. Babies under 1 are free."
+  },
+  {
+    question: "Can I arrive late?",
+    answer: "Please try to arrive on time — we can't guarantee seating once the movie has started."
   }
 ];
 

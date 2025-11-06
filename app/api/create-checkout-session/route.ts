@@ -8,10 +8,10 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_placeholder'
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, night, kidTickets, adultTickets } = await request.json();
+    const { name, email, phone, night, kidTickets, adultTickets } = await request.json();
 
     // Validate inputs
-    if (!name || !email || !night) {
+    if (!name || !email || !phone || !night) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -99,6 +99,7 @@ export async function POST(request: NextRequest) {
       customer_email: email,
       metadata: {
         customer_name: name,
+        customer_phone: phone,
         event_night: night,
         night_key: nightKey,
         kid_tickets: kidTickets.toString(),
@@ -113,6 +114,7 @@ export async function POST(request: NextRequest) {
       payment_intent_data: {
         metadata: {
           customer_name: name,
+          customer_phone: phone,
           event_night: night,
           night_key: nightKey,
           kid_tickets: kidTickets.toString(),

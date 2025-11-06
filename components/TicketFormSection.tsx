@@ -26,6 +26,7 @@ export function TicketFormSection() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     date: "",
     kidTickets: 0,
     adultTickets: 0
@@ -125,7 +126,7 @@ export function TicketFormSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.date) {
+    if (!formData.name || !formData.email || !formData.phone || !formData.date) {
       toast.error("Please fill in all fields");
       return;
     }
@@ -151,6 +152,7 @@ export function TicketFormSection() {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
+          phone: formData.phone,
           night: formData.date,
           kidTickets: formData.kidTickets,
           adultTickets: formData.adultTickets
@@ -286,6 +288,20 @@ export function TicketFormSection() {
                   placeholder="your@email.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="h-12 border-2 focus:border-[#F8AFC8]"
+                  disabled={loading}
+                />
+              </div>
+
+              {/* Phone Number */}
+              <div className="space-y-2">
+                <Label htmlFor="phone">Mobile Number</Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  placeholder="07XXX XXXXXX"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="h-12 border-2 focus:border-[#F8AFC8]"
                   disabled={loading}
                 />
