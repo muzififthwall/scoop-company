@@ -1,7 +1,16 @@
 import { kv } from '@vercel/kv';
 
+// Event night configuration type
+export interface EventNight {
+  key: string;
+  displayName: string;
+  value: string;
+  movie: string;
+  adultOnly?: boolean;
+}
+
 // Event nights configuration
-export const EVENT_NIGHTS = [
+export const EVENT_NIGHTS: readonly EventNight[] = [
   {
     key: '11-nov',
     displayName: '🏙️ Tue 11 Nov - Home Alone 2 - 5:00PM',
@@ -88,7 +97,7 @@ export const EVENT_NIGHTS = [
     value: 'Tuesday 30 Dec — 5:00pm',
     movie: 'Jingle all the Way'
   },
-] as const;
+];
 
 export const MAX_KID_TICKETS = 20;
 export const MAX_ADULT_TICKETS = 15;
