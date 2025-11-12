@@ -22,15 +22,17 @@ export const EVENT_NIGHTS = [
   },
   {
     key: '26-nov',
-    displayName: '🚂 Wed 26 Nov - Polar Express - 5:00PM',
-    value: 'Wednesday 26 Nov — 5:00pm',
-    movie: 'Polar Express'
+    displayName: '🚂 Wed 26 Nov - Polar Express - 6:30PM arrival (6:45PM start) - ADULTS ONLY',
+    value: 'Wednesday 26 Nov — 6:30pm arrival (6:45pm start)',
+    movie: 'Polar Express',
+    adultOnly: true
   },
   {
     key: '27-nov',
-    displayName: '🧝‍♂️ Thu 27 Nov - Elf - 5:00PM',
-    value: 'Thursday 27 Nov — 5:00pm',
-    movie: 'Elf'
+    displayName: '🧝‍♂️ Thu 27 Nov - Elf - 6:30PM arrival (6:45PM start) - ADULTS ONLY',
+    value: 'Thursday 27 Nov — 6:30pm arrival (6:45pm start)',
+    movie: 'Elf',
+    adultOnly: true
   },
   {
     key: '3-dec',
@@ -116,6 +118,7 @@ export interface Availability {
   kidTicketsRemaining: number;
   adultTicketsRemaining: number;
   isSoldOut: boolean;
+  adultOnly?: boolean;
 }
 
 // Helper to get night key from display value
@@ -168,7 +171,8 @@ export async function getAvailability(nightKey: string): Promise<Availability> {
     value: nightInfo.value,
     kidTicketsRemaining: Math.max(0, kidTicketsRemaining),
     adultTicketsRemaining: Math.max(0, adultTicketsRemaining),
-    isSoldOut: kidTicketsRemaining <= 0,
+    isSoldOut: nightInfo.adultOnly ? adultTicketsRemaining <= 0 : kidTicketsRemaining <= 0,
+    adultOnly: nightInfo.adultOnly,
   };
 }
 
@@ -205,13 +209,25 @@ export async function reserveTickets(
   adultTickets: number,
   sessionId: string
 ): Promise<{ success: boolean; error?: string }> {
+  // Check if this is an adult-only event
+  const nightInfo = getNightFromKey(nightKey);
+  const isAdultOnly = nightInfo?.adultOnly === true;
+
   // Validate inputs
-  if (kidTickets < 1) {
+  if (!isAdultOnly && kidTickets < 1) {
     return { success: false, error: 'Must book at least 1 kid ticket' };
   }
 
-  if (adultTickets > 0 && kidTickets < 1) {
+  if (!isAdultOnly && adultTickets > 0 && kidTickets < 1) {
     return { success: false, error: 'Must have at least 1 kid ticket to book adult tickets' };
+  }
+
+  if (isAdultOnly && kidTickets > 0) {
+    return { success: false, error: 'This is an adults-only event. Kid tickets are not available.' };
+  }
+
+  if (isAdultOnly && adultTickets < 1) {
+    return { success: false, error: 'Must book at least 1 adult ticket' };
   }
 
   if (kidTickets > 8 || adultTickets > 8) {
