@@ -18,19 +18,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!kidTickets || kidTickets < 1) {
-      return NextResponse.json(
-        { error: 'At least 1 kid ticket is required' },
-        { status: 400 }
-      );
-    }
-
-    if ((adultTickets || 0) > 0 && kidTickets < 1) {
-      return NextResponse.json(
-        { error: 'Must have at least 1 kid ticket to book adult tickets' },
-        { status: 400 }
-      );
-    }
+    // Kid ticket validation moved to reserveTickets() to support adult-only events
 
     // Get night key from value
     const nightKey = getNightKeyFromValue(night);
