@@ -90,7 +90,7 @@ function SuccessContent() {
             {/* Success Message */}
             <div className="space-y-3">
               <h1 className="text-4xl md:text-5xl" style={{ fontWeight: 800, color: '#030213' }}>
-                {isYuleLog ? 'Order Confirmed! 🎁' : 'You're All Set! 🎉'}
+                {isYuleLog ? 'Order Confirmed! 🎁' : "You're All Set! 🎉"}
               </h1>
               <p className="text-xl" style={{ color: '#717182' }}>
                 {isYuleLog ? 'Your Gelato Yule Log order has been confirmed' : 'Your tickets have been confirmed'}
