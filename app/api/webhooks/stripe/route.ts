@@ -45,31 +45,52 @@ export async function POST(request: NextRequest) {
           return NextResponse.json({ error: 'No metadata' }, { status: 400 });
         }
 
-        const { night_key, kid_tickets, adult_tickets, temp_session_id } = metadata;
+        // Check if this is a yule log order or ticket order
+        const productType = metadata.product_type;
 
-        if (!night_key || !kid_tickets || !temp_session_id) {
-          console.error('Missing required metadata fields');
-          return NextResponse.json(
-            { error: 'Missing metadata fields' },
-            { status: 400 }
+        if (productType === 'yule_log') {
+          // Handle yule log order - no inventory tracking needed
+          console.log('Yule Log order confirmed:', {
+            sessionId: session.id,
+            customerName: metadata.customer_name,
+            customerEmail: session.customer_email,
+            collectionDate: metadata.collection_date_formatted,
+            deliveryOption: metadata.delivery_option,
+            orderSummary: metadata.order_summary,
+            totalAmount: metadata.total_amount
+          });
+          // In production, you might want to:
+          // - Store the order in a database
+          // - Send a confirmation email
+          // - Notify the kitchen/staff
+        } else {
+          // Handle ticket order with inventory
+          const { night_key, kid_tickets, adult_tickets, temp_session_id } = metadata;
+
+          if (!night_key || !kid_tickets || !temp_session_id) {
+            console.error('Missing required metadata fields');
+            return NextResponse.json(
+              { error: 'Missing metadata fields' },
+              { status: 400 }
+            );
+          }
+
+          // Confirm the booking (permanently deduct from inventory)
+          const result = await confirmBooking(
+            night_key,
+            parseInt(kid_tickets),
+            parseInt(adult_tickets || '0'),
+            temp_session_id
           );
+
+          if (!result.success) {
+            console.error('Failed to confirm booking:', result.error);
+            // Note: Payment already succeeded, so we log the error but don't fail the webhook
+            // In a production system, you'd want to handle this more gracefully (e.g., alert admins)
+          }
+
+          console.log('Ticket booking confirmed for session:', session.id);
         }
-
-        // Confirm the booking (permanently deduct from inventory)
-        const result = await confirmBooking(
-          night_key,
-          parseInt(kid_tickets),
-          parseInt(adult_tickets || '0'),
-          temp_session_id
-        );
-
-        if (!result.success) {
-          console.error('Failed to confirm booking:', result.error);
-          // Note: Payment already succeeded, so we log the error but don't fail the webhook
-          // In a production system, you'd want to handle this more gracefully (e.g., alert admins)
-        }
-
-        console.log('Booking confirmed for session:', session.id);
         break;
       }
 

@@ -29,7 +29,7 @@ export function HeroSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left content */}
-          <div className="text-center md:text-left space-y-6">
+          <div className="text-center md:text-left space-y-6 relative z-20 order-1">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#1F1B24] rounded-full border-2 border-[#1F1B24]">
               <Sparkles className="w-4 h-4 text-white" />
               <span className="text-sm text-white font-semibold">{TICKETS_SOLD_OUT ? 'SOLD OUT' : 'Limited Seats Available'}</span>
@@ -66,7 +66,7 @@ export function HeroSection() {
           </div>
 
           {/* Right content - Image */}
-          <div className="relative">
+          <div className="relative z-10 order-2 md:order-none">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500">
               <img
                 src="/images/header-image.jpg"

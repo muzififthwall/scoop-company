@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/sonner";
+import Navigation from "@/components/Navigation";
 import Script from "next/script";
 import "./globals.css";
 
@@ -48,6 +49,7 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
+          <Navigation />
           {children}
           <Toaster />
         </ThemeProvider>

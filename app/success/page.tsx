@@ -17,7 +17,10 @@ declare global {
 function SuccessContent() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get('session_id');
+  const orderType = searchParams.get('type') || 'ticket';
   const [loading, setLoading] = useState(true);
+
+  const isYuleLog = orderType === 'yule-log';
 
   useEffect(() => {
     if (sessionId) {
@@ -28,23 +31,25 @@ function SuccessContent() {
         if (typeof window !== 'undefined' && window.fbq) {
           window.fbq('track', 'Purchase', {
             currency: 'GBP',
-            value: 12, // Base value, actual value may vary
+            value: isYuleLog ? 29.99 : 12,
             content_type: 'product',
-            content_name: 'Movie Night Tickets',
+            content_name: isYuleLog ? 'Gelato Yule Log' : 'Movie Night Tickets',
           });
         }
       }, 500);
     } else {
       setLoading(false);
     }
-  }, [sessionId]);
+  }, [sessionId, isYuleLog]);
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #FFE8F0 0%, #FFF5F0 100%)' }}>
         <div className="text-center">
-          <div className="text-6xl mb-6 animate-bounce">🎟️</div>
-          <p className="text-xl" style={{ color: '#717182' }}>Loading your tickets...</p>
+          <div className="text-6xl mb-6 animate-bounce">{isYuleLog ? '🎁' : '🎟️'}</div>
+          <p className="text-xl" style={{ color: '#717182' }}>
+            {isYuleLog ? 'Processing your order...' : 'Loading your tickets...'}
+          </p>
         </div>
       </div>
     );
@@ -82,10 +87,10 @@ function SuccessContent() {
             {/* Success Message */}
             <div className="space-y-3">
               <h1 className="text-4xl md:text-5xl" style={{ fontWeight: 800, color: '#030213' }}>
-                You're All Set! 🎉
+                {isYuleLog ? 'Order Confirmed! 🎁' : 'You're All Set! 🎉'}
               </h1>
               <p className="text-xl" style={{ color: '#717182' }}>
-                Your tickets have been confirmed
+                {isYuleLog ? 'Your Gelato Yule Log order has been confirmed' : 'Your tickets have been confirmed'}
               </p>
             </div>
 
@@ -98,25 +103,52 @@ function SuccessContent() {
                 </p>
               </div>
               <div className="space-y-2 text-left max-w-md mx-auto" style={{ color: '#030213' }}>
-                <p className="flex items-start gap-2">
-                  <span className="text-xl">📧</span>
-                  <span>Check your email for your ticket confirmation</span>
-                </p>
-                <p className="flex items-start gap-2">
-                  <span className="text-xl">🎟️</span>
-                  <span>Show your confirmation at the door on event night</span>
-                </p>
-                <p className="flex items-start gap-2">
-                  <span className="text-xl">🍨</span>
-                  <span>Get ready for a festive sweet evening!</span>
-                </p>
+                {isYuleLog ? (
+                  <>
+                    <p className="flex items-start gap-2">
+                      <span className="text-xl">📧</span>
+                      <span>Check your email for your order confirmation and collection details</span>
+                    </p>
+                    <p className="flex items-start gap-2">
+                      <span className="text-xl">📅</span>
+                      <span>We'll send you a reminder the day before collection</span>
+                    </p>
+                    <p className="flex items-start gap-2">
+                      <span className="text-xl">🎄</span>
+                      <span>Collect your handcrafted Yule Log on your selected date!</span>
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p className="flex items-start gap-2">
+                      <span className="text-xl">📧</span>
+                      <span>Check your email for your ticket confirmation</span>
+                    </p>
+                    <p className="flex items-start gap-2">
+                      <span className="text-xl">🎟️</span>
+                      <span>Show your confirmation at the door on event night</span>
+                    </p>
+                    <p className="flex items-start gap-2">
+                      <span className="text-xl">🍨</span>
+                      <span>Get ready for a festive sweet evening!</span>
+                    </p>
+                  </>
+                )}
               </div>
             </div>
 
             {/* Details Note */}
             <div className="p-4 rounded-xl" style={{ background: 'rgba(196, 30, 58, 0.1)', border: '1px solid rgba(196, 30, 58, 0.3)' }}>
               <p className="text-sm" style={{ color: '#030213' }}>
-                <strong>Remember:</strong> Your dessert and drink are included! Choose from our full menu when you arrive. 🎄
+                {isYuleLog ? (
+                  <>
+                    <strong>Important:</strong> Please allow 72 hours for preparation. Your Yule Log will be freshly made by Gelato by Maria. 🎅
+                  </>
+                ) : (
+                  <>
+                    <strong>Remember:</strong> Your dessert and drink are included! Choose from our full menu when you arrive. 🎄
+                  </>
+                )}
               </p>
             </div>
 
