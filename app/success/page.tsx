@@ -56,7 +56,10 @@ function SuccessContent() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #FFE8F0 0%, #FFF5F0 100%)' }}>
+    <div
+      className="min-h-screen flex items-center justify-center px-4 py-12 relative overflow-hidden"
+      style={{ background: 'linear-gradient(135deg, #FFE8F0 0%, #FFF5F0 100%)' }}
+    >
       {/* Decorative background elements */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
         <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-[#C41E3A] blur-3xl"></div>
