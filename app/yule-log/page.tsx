@@ -196,7 +196,7 @@ export default function YuleLogPage() {
 
             {/* Right - Yule Log Image */}
             <div className="relative animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <div className="relative rounded-2xl overflow-hidden">
                 <img
                   src="/images/yule-log-image.png"
                   alt="The Scoop Company Gelato Yule Log"
