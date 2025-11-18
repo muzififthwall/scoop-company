@@ -51,6 +51,17 @@ export function OrderForm({ cart, onBack }: OrderFormProps) {
     setIsSubmitting(true);
     setError(null);
 
+    // Track InitiateCheckout event with Meta Pixel
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'InitiateCheckout', {
+        currency: 'GBP',
+        value: cart.reduce((sum, item) => sum + (29.99 * item.quantity), 0),
+        content_type: 'product',
+        content_name: 'Gelato Yule Log',
+        num_items: cart.reduce((sum, item) => sum + item.quantity, 0),
+      });
+    }
+
     try {
       const response = await fetch("/api/create-yule-log-checkout", {
         method: "POST",
