@@ -31,14 +31,14 @@ export const EVENT_NIGHTS: readonly EventNight[] = [
   },
   {
     key: '26-nov',
-    displayName: '🚂 Wed 26 Nov - Polar Express - 6:30PM arrival (6:45PM start) - ADULTS ONLY',
+    displayName: '🚂 Wed 26 Nov - Polar Express - 6:30PM - ADULTS ONLY',
     value: 'Wednesday 26 Nov — 6:30pm arrival (6:45pm start)',
     movie: 'Polar Express',
     adultOnly: true
   },
   {
     key: '27-nov',
-    displayName: '🧝‍♂️ Thu 27 Nov - Elf - 6:30PM arrival (6:45PM start) - ADULTS ONLY',
+    displayName: '🧝‍♂️ Thu 27 Nov - Elf - 6:30PM - ADULTS ONLY',
     value: 'Thursday 27 Nov — 6:30pm arrival (6:45pm start)',
     movie: 'Elf',
     adultOnly: true
