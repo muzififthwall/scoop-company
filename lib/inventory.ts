@@ -91,12 +91,6 @@ export const EVENT_NIGHTS: readonly EventNight[] = [
     value: 'Monday 29 Dec — 5:00pm',
     movie: 'Elf'
   },
-  {
-    key: '30-dec',
-    displayName: '🤖 Tue 30 Dec - Jingle all the Way - 5:00PM',
-    value: 'Tuesday 30 Dec — 5:00pm',
-    movie: 'Jingle all the Way'
-  },
 ];
 
 export const MAX_KID_TICKETS = 20;

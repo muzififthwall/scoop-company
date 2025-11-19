@@ -50,7 +50,7 @@ export function EventDetailsSection() {
                 </div>
                 <h3 className="text-2xl" style={{ fontWeight: 700, color: '#1F1B24' }}>When</h3>
                 <div style={{ color: '#717182' }}>
-                  <p style={{ fontWeight: 600 }}>11th Nov - 30th Dec</p>
+                  <p style={{ fontWeight: 600 }}>11th Nov - 29th Dec</p>
                   <p>Seating 5:00PM</p>
                   <p className="mt-2">Film starts 5:15PM</p>
                 </div>

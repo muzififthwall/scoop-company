@@ -113,7 +113,7 @@ export function PricingSection() {
             <Card className="p-6 bg-white/80 backdrop-blur-sm text-center">
               <div className="text-3xl mb-2">🗓</div>
               <h4 style={{ fontWeight: 700, color: '#1F1B24' }}>When</h4>
-              <p style={{ color: '#717182' }}>11th Nov – 30th Dec</p>
+              <p style={{ color: '#717182' }}>11th Nov – 29th Dec</p>
             </Card>
 
             <Card className="p-6 bg-white/80 backdrop-blur-sm text-center">
