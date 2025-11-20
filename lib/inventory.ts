@@ -44,22 +44,16 @@ export const EVENT_NIGHTS: readonly EventNight[] = [
     adultOnly: true
   },
   {
-    key: '3-dec',
-    displayName: '🎅 Wed 3 Dec - Christmas Chronicles - 5:00PM',
-    value: 'Wednesday 3 Dec — 5:00pm',
+    key: '5-dec',
+    displayName: '🎅 Fri 5 Dec - Christmas Chronicles - 5:45PM',
+    value: 'Friday 5 Dec — 5:45pm',
     movie: 'Christmas Chronicles'
   },
   {
-    key: '4-dec',
-    displayName: '🧣 Thu 4 Dec - The Santa Clause - 5:00PM',
-    value: 'Thursday 4 Dec — 5:00pm',
+    key: '12-dec',
+    displayName: '🧣 Fri 12 Dec - The Santa Clause - 5:45PM',
+    value: 'Friday 12 Dec — 5:45pm',
     movie: 'The Santa Clause'
-  },
-  {
-    key: '10-dec',
-    displayName: '🎶 Wed 10 Dec - Jingle Jangle - 5:00PM',
-    value: 'Wednesday 10 Dec — 5:00pm',
-    movie: 'Jingle Jangle'
   },
   {
     key: '16-dec',
@@ -74,6 +68,18 @@ export const EVENT_NIGHTS: readonly EventNight[] = [
     movie: 'Home Alone'
   },
   {
+    key: '20-dec',
+    displayName: '🧝‍♂️ Sat 20 Dec - Elf - 5:45PM',
+    value: 'Saturday 20 Dec — 5:45pm',
+    movie: 'Elf'
+  },
+  {
+    key: '21-dec',
+    displayName: '💚 Sun 21 Dec - The Grinch - 5:45PM',
+    value: 'Sunday 21 Dec — 5:45pm',
+    movie: 'The Grinch'
+  },
+  {
     key: '22-dec',
     displayName: '🏙️ Mon 22 Dec - Home Alone 2 - 5:00PM',
     value: 'Monday 22 Dec — 5:00pm',
@@ -84,12 +90,6 @@ export const EVENT_NIGHTS: readonly EventNight[] = [
     displayName: '🚂 Tue 23 Dec - Polar Express - 5:00PM',
     value: 'Tuesday 23 Dec — 5:00pm',
     movie: 'Polar Express'
-  },
-  {
-    key: '29-dec',
-    displayName: '🧝‍♂️ Mon 29 Dec - Elf - 5:00PM',
-    value: 'Monday 29 Dec — 5:00pm',
-    movie: 'Elf'
   },
 ];
 
