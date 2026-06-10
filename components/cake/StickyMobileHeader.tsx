@@ -80,7 +80,7 @@ export function StickyMobileHeader({
               </div>
             ) : (
               <p className="text-sm text-[#3D2B1F]/60">
-                Build your birthday cake below
+                Build your gelato cake below
               </p>
             )}
           </div>

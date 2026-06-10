@@ -76,13 +76,13 @@ export function OrderForm({ cart, onBack }: OrderFormProps) {
         currency: 'GBP',
         value: cartTotal,
         content_type: 'product',
-        content_name: 'Gelato Birthday Cake',
+        content_name: 'Gelato Cake',
         num_items: cart.reduce((sum, item) => sum + item.quantity, 0),
       });
     }
 
     try {
-      const response = await fetch("/api/create-birthday-cake-checkout", {
+      const response = await fetch("/api/create-gelato-cake-checkout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

@@ -48,9 +48,9 @@ export async function POST(request: NextRequest) {
         // Check if this is a yule log order or ticket order
         const productType = metadata.product_type;
 
-        if (productType === 'birthday_cake') {
-          // Handle birthday cake order - no inventory tracking needed
-          console.log('Birthday Cake order confirmed:', {
+        if (productType === 'gelato_cake') {
+          // Handle gelato cake order - no inventory tracking needed
+          console.log('Gelato Cake order confirmed:', {
             sessionId: session.id,
             customerName: metadata.customer_name,
             customerEmail: session.customer_email,

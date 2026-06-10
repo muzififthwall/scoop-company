@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { BIRTHDAY_CAKES_SOLD_OUT } from '@/lib/inventory';
+import { GELATO_CAKES_SOLD_OUT } from '@/lib/inventory';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_placeholder', {
   apiVersion: '2025-02-24.acacia',
@@ -62,10 +62,10 @@ const calculateItemPrice = (item: CartItem): number => {
 
 export async function POST(request: NextRequest) {
   try {
-    // Check if Birthday Cakes are sold out
-    if (BIRTHDAY_CAKES_SOLD_OUT) {
+    // Check if Gelato Cakes are sold out
+    if (GELATO_CAKES_SOLD_OUT) {
       return NextResponse.json(
-        { error: 'Birthday Cakes are sold out' },
+        { error: 'Gelato Cakes are sold out' },
         { status: 400 }
       );
     }
@@ -124,7 +124,7 @@ export async function POST(request: NextRequest) {
         price_data: {
           currency: 'gbp',
           product_data: {
-            name: `Gelato Birthday Cake #${index + 1}`,
+            name: `Gelato Cake #${index + 1}`,
             description: description,
           },
           unit_amount: Math.round(unitPrice * 100), // Convert to pence
@@ -165,11 +165,11 @@ export async function POST(request: NextRequest) {
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
-      success_url: `${request.nextUrl.origin}/success?session_id={CHECKOUT_SESSION_ID}&type=birthday-cake`,
-      cancel_url: `${request.nextUrl.origin}/birthday-cake`,
+      success_url: `${request.nextUrl.origin}/success?session_id={CHECKOUT_SESSION_ID}&type=gelato-cake`,
+      cancel_url: `${request.nextUrl.origin}/gelato-cake`,
       customer_email: customerInfo.email,
       metadata: {
-        product_type: 'birthday_cake',
+        product_type: 'gelato_cake',
         customer_name: customerInfo.name,
         customer_phone: customerInfo.phone,
         collection_date: customerInfo.collectionDate,
@@ -181,7 +181,7 @@ export async function POST(request: NextRequest) {
       },
       payment_intent_data: {
         metadata: {
-          product_type: 'birthday_cake',
+          product_type: 'gelato_cake',
           customer_name: customerInfo.name,
           customer_phone: customerInfo.phone,
           collection_date: customerInfo.collectionDate,
@@ -195,7 +195,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ url: session.url });
   } catch (error) {
-    console.error('Error creating birthday cake checkout session:', error);
+    console.error('Error creating gelato cake checkout session:', error);
     return NextResponse.json(
       { error: 'Error creating checkout session' },
       { status: 500 }

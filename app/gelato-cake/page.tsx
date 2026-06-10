@@ -8,7 +8,7 @@ import { OrderSummary, CartItem } from "@/components/yule-log/OrderSummary";
 import { OrderForm } from "@/components/yule-log/OrderForm";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Cake, ChevronDown, Check } from "lucide-react";
-import { BIRTHDAY_CAKES_SOLD_OUT } from "@/lib/inventory";
+import { GELATO_CAKES_SOLD_OUT } from "@/lib/inventory";
 import { StickyMobileHeader } from "@/components/cake/StickyMobileHeader";
 
 // Size options with pricing
@@ -62,7 +62,7 @@ const TOPPINGS = [
   { id: 'biscoff-crumb', name: 'Biscoff Crumb', emoji: '🍪', dietary: ['Vg', 'S', 'G'] },
 ];
 
-export default function BirthdayCakePage() {
+export default function GelatoCakePage() {
   // Current item being built
   const [selectedSize, setSelectedSize] = useState<SizeId>("small");
   const [selectedButtercream, setSelectedButtercream] = useState<ButtercreamId>("small");
@@ -235,18 +235,18 @@ export default function BirthdayCakePage() {
               </div>
 
               <h1 className="mb-4 text-[#3D2B1F] text-4xl md:text-5xl lg:text-6xl font-bold">
-                Build Your Perfect<br />Gelato Birthday Cake 🎂
+                Build Your Perfect<br />Gelato Cake 🎂
               </h1>
 
               <p className="text-lg md:text-xl text-[#3D2B1F]/70 mb-8">
                 Hand-crafted by <span className="font-semibold text-[#F8AFC8]">Gelato by Maria</span> — smooth, rich, and totally customisable for your celebration.
               </p>
 
-              {BIRTHDAY_CAKES_SOLD_OUT ? (
+              {GELATO_CAKES_SOLD_OUT ? (
                 <div className="bg-red-100 border-2 border-red-400 rounded-xl p-6 text-center">
                   <p className="text-red-700 font-bold text-xl mb-2">Sold Out!</p>
                   <p className="text-red-600">
-                    All Birthday Cakes are currently sold out. Please check back soon!
+                    All Gelato Cakes are currently sold out. Please check back soon!
                   </p>
                 </div>
               ) : (
@@ -278,8 +278,8 @@ export default function BirthdayCakePage() {
             <div className="relative animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
               <div className="relative rounded-2xl overflow-hidden">
                 <img
-                  src="/images/birthday-cake-image.png"
-                  alt="The Scoop Company Gelato Birthday Cake"
+                  src="/images/gelato-cake-image.png"
+                  alt="The Scoop Company Gelato Cake"
                   className="w-full h-auto object-cover"
                 />
                 {/* Decorative elements */}
@@ -300,7 +300,7 @@ export default function BirthdayCakePage() {
       </section>
 
       {/* Builder Section - Hidden when sold out */}
-      {!BIRTHDAY_CAKES_SOLD_OUT && (
+      {!GELATO_CAKES_SOLD_OUT && (
       <section id="builder" className="py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-3 gap-8">
@@ -309,7 +309,7 @@ export default function BirthdayCakePage() {
               {editingItemId && (
                 <div className="bg-[#E3C565]/20 border-2 border-[#E3C565] rounded-xl p-4 flex items-center justify-between">
                   <div>
-                    <p className="text-[#3D2B1F] font-semibold">✏️ Editing Birthday Cake</p>
+                    <p className="text-[#3D2B1F] font-semibold">✏️ Editing Gelato Cake</p>
                     <p className="text-sm text-[#3D2B1F]/60">Make your changes below</p>
                   </div>
                   <Button
@@ -618,7 +618,7 @@ export default function BirthdayCakePage() {
                     onClick={addToCart}
                     className="w-full bg-[#2E4E3F] hover:bg-[#2E4E3F]/90 text-white py-6 text-lg shadow-2xl"
                   >
-                    {editingItemId ? "Update Birthday Cake" : "Add to Cart"} — £{currentItemPrice.toFixed(2)}
+                    {editingItemId ? "Update Gelato Cake" : "Add to Cart"} — £{currentItemPrice.toFixed(2)}
                   </Button>
                 </div>
               )}
@@ -653,7 +653,7 @@ export default function BirthdayCakePage() {
       )}
 
       {/* Order Form Section - Hidden when sold out */}
-      {!BIRTHDAY_CAKES_SOLD_OUT && showForm && (
+      {!GELATO_CAKES_SOLD_OUT && showForm && (
         <section id="order-form" className="py-16 px-6 bg-[#F8AFC8]/5">
           <div className="max-w-7xl mx-auto">
             <OrderForm
@@ -667,7 +667,7 @@ export default function BirthdayCakePage() {
       {/* Footer */}
       <footer className="py-8 text-center text-[#3D2B1F]/60 border-t border-[#E3C565]/20">
         <p>The Scoop Company · Gelato by Maria</p>
-        <p className="text-sm mt-2">Making celebrations sweeter, one birthday cake at a time 🎉</p>
+        <p className="text-sm mt-2">Making celebrations sweeter, one gelato cake at a time 🎉</p>
         <div className="flex justify-center gap-4 text-xs text-[#3D2B1F]/50 mt-4">
           <span>🍦 Hand-crafted gelato</span>
           <span>•</span>

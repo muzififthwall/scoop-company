@@ -8,11 +8,11 @@ export default function Navigation() {
           </div>
           <div className="flex gap-3 items-center">
             <a
-              href="/birthday-cake"
+              href="/gelato-cake"
               className="inline-block px-4 py-3 rounded-xl border border-white/40 font-semibold no-underline bg-white hover:bg-gray-50 transition-colors"
               style={{ color: '#1F1B24' }}
             >
-              Order Birthday Cake
+              Order Gelato Cake
             </a>
             <a
               href="/"

@@ -107,7 +107,7 @@ export function OrderSummary({
         <div className="text-center py-8">
           <div className="text-5xl mb-3">🎂</div>
           <p className="text-[#3D2B1F]/60 mb-2">Your cart is empty</p>
-          <p className="text-sm text-[#3D2B1F]/40">Build your Birthday Cake and add it to cart!</p>
+          <p className="text-sm text-[#3D2B1F]/40">Build your Gelato Cake and add it to cart!</p>
         </div>
       ) : (
         <div className="space-y-4">
@@ -126,7 +126,7 @@ export function OrderSummary({
                   <div className="flex items-start justify-between mb-2">
                     <div className="flex-1">
                       <p className="text-[#3D2B1F] font-medium">
-                        Birthday Cake #{index + 1}
+                        Gelato Cake #{index + 1}
                       </p>
                       <p className="text-sm text-[#3D2B1F]/60">{getFlavourName(item.flavour)}</p>
                     </div>

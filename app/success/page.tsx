@@ -21,7 +21,7 @@ function SuccessContent() {
   const [loading, setLoading] = useState(true);
 
   const isYuleLog = orderType === 'yule-log';
-  const isBirthdayCake = orderType === 'birthday-cake';
+  const isBirthdayCake = orderType === 'gelato-cake';
 
   useEffect(() => {
     if (sessionId) {
@@ -34,7 +34,7 @@ function SuccessContent() {
             currency: 'GBP',
             value: isBirthdayCake ? 27.99 : isYuleLog ? 29.99 : 12,
             content_type: 'product',
-            content_name: isBirthdayCake ? 'Gelato Birthday Cake' : isYuleLog ? 'Gelato Yule Log' : 'Movie Night Tickets',
+            content_name: isBirthdayCake ? 'Gelato Cake' : isYuleLog ? 'Gelato Yule Log' : 'Movie Night Tickets',
           });
         }
       }, 500);
@@ -94,7 +94,7 @@ function SuccessContent() {
                 {isBirthdayCake ? 'Order Confirmed! 🎂' : isYuleLog ? 'Order Confirmed! 🎁' : "You're All Set! 🎉"}
               </h1>
               <p className="text-xl" style={{ color: '#717182' }}>
-                {isBirthdayCake ? 'Your Gelato Birthday Cake order has been confirmed' : isYuleLog ? 'Your Gelato Yule Log order has been confirmed' : 'Your tickets have been confirmed'}
+                {isBirthdayCake ? 'Your Gelato Cake order has been confirmed' : isYuleLog ? 'Your Gelato Yule Log order has been confirmed' : 'Your tickets have been confirmed'}
               </p>
             </div>
 
@@ -119,7 +119,7 @@ function SuccessContent() {
                     </p>
                     <p className="flex items-start gap-2">
                       <span className="text-xl">🎂</span>
-                      <span>Collect your handcrafted Birthday Cake on your selected date!</span>
+                      <span>Collect your handcrafted Gelato Cake on your selected date!</span>
                     </p>
                   </>
                 ) : isYuleLog ? (
@@ -161,7 +161,7 @@ function SuccessContent() {
               <p className="text-sm" style={{ color: '#030213' }}>
                 {isBirthdayCake ? (
                   <>
-                    <strong>Important:</strong> Please allow 72 hours for preparation. Your Birthday Cake will be freshly made by Gelato by Maria. 🎉
+                    <strong>Important:</strong> Please allow 72 hours for preparation. Your Gelato Cake will be freshly made by Gelato by Maria. 🎉
                   </>
                 ) : isYuleLog ? (
                   <>
