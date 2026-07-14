@@ -72,7 +72,9 @@ export default function Navigation() {
         >
           {/* padding + logo height matched to the marketing pages, measured */}
           <div className="max-w-[1180px] mx-auto px-5 md:px-6">
-            <div className="flex items-center justify-between gap-3 h-[76px]">
+            {/* 56px on mobile to match the marketing pages' topbar, 76px on
+                desktop to match their taller logo bar. */}
+            <div className="flex items-center justify-between gap-3 h-14 md:h-[76px]">
               <a href="/" className="shrink-0" aria-label="The Scoop Company, home">
                 <img
                   src="/images/scoop-logo.png"
