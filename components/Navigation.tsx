@@ -103,8 +103,10 @@ export default function Navigation() {
         role="dialog"
         aria-modal="true"
         aria-label="Menu"
+        // invisible when closed: a phone's collapsing address bar can otherwise
+        // let a translated-away panel peek back onto the screen
         className={`fixed inset-0 z-[60] md:hidden transition-transform duration-300 ease-out ${
-          open ? "translate-y-0" : "translate-y-full pointer-events-none"
+          open ? "translate-y-0" : "translate-y-full pointer-events-none invisible"
         }`}
         style={{ background: BLOSSOM }}
       >
