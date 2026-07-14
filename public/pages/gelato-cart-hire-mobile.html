@@ -216,6 +216,44 @@ figure.rounded{margin:0 20px;border-radius:26px;overflow:hidden}
     });
   });
 })();
+</script><style id="sc-actionbar">
+:root{--bar:50px}
+.actionbar{height:calc(var(--bar) + env(safe-area-inset-bottom));
+  padding:6px 12px calc(6px + env(safe-area-inset-bottom));gap:8px}
+.actionbar .btn{min-height:38px;font-size:.92rem;padding:0 1rem}
+/* the label has to hold one line: it wrapped to two and looked broken */
+.actionbar .primary{white-space:nowrap}
+.actionbar .icon{width:38px;height:38px;border-radius:12px}
+.actionbar .icon svg{width:18px;height:18px}
+
+/* Hidden while the hero's own CTA is on screen, so the same button is not
+   offered twice. Slides up once you scroll past it. */
+.actionbar{transform:translateY(130%);transition:transform .3s cubic-bezier(.4,0,.2,1);will-change:transform}
+.actionbar.show{transform:none}
+@media (prefers-reduced-motion:reduce){
+  .actionbar{transition:none}
+}
+</style><script>
+(function () {
+  document.addEventListener('DOMContentLoaded', function () {
+    var bar = document.querySelector('.actionbar');
+    var hero = document.querySelector('.hero');
+    if (!bar || !hero) return;
+
+    // Watch the last button in the hero: while it is visible the sticky bar
+    // would just be a duplicate of it.
+    var buttons = hero.querySelectorAll('.btn');
+    var target = buttons.length ? buttons[buttons.length - 1] : hero;
+
+    if (!('IntersectionObserver' in window)) { bar.classList.add('show'); return; }
+
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        bar.classList.toggle('show', !e.isIntersecting);
+      });
+    }, { threshold: 0 }).observe(target);
+  });
+})();
 </script></head>
 <body id="top">
 
