@@ -54,7 +54,7 @@ export function RegisterInterestSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12 space-y-4">
-            <div className="inline-flex items-center gap-2 px-6 py-3 bg-[#F8AFC8] text-white rounded-full">
+            <div className="inline-flex items-center gap-2 px-6 py-3 bg-[#F8AFC8] rounded-full" style={{ color: '#1F1B24' }}>
               <Sparkles className="w-5 h-5" />
               <span style={{ fontWeight: 700, fontSize: '1.1rem' }}>BACK THIS WINTER</span>
             </div>
@@ -62,8 +62,8 @@ export function RegisterInterestSection() {
             <h2 className="text-4xl md:text-5xl" style={{ fontWeight: 800, color: '#1F1B24' }}>
               Kids Cinema Nights Return This Winter
             </h2>
-            <p className="text-xl" style={{ color: '#717182' }}>
-              Register your interest and we&apos;ll let you know the moment tickets go on sale — before we announce them anywhere else.
+            <p className="text-xl" style={{ color: '#5C5C6B' }}>
+              Tickets are not on sale yet. Join the list and we&apos;ll email you the moment they are, before we announce it anywhere else.
             </p>
           </div>
 
@@ -78,12 +78,12 @@ export function RegisterInterestSection() {
                   You&apos;re on the list! 🎬
                 </h3>
 
-                <p className="text-lg" style={{ color: '#717182', lineHeight: '1.6' }}>
-                  Thanks {formData.name.split(" ")[0]} — we&apos;ll be in touch as soon as winter dates are live.
+                <p className="text-lg" style={{ color: '#5C5C6B', lineHeight: '1.6' }}>
+                  Thanks {formData.name.split(" ")[0]}. We&apos;ll email you as soon as the winter dates are live.
                 </p>
 
-                <div className="p-5 rounded-xl mt-2" style={{ background: '#F8AFC8', border: '2px solid #F38DB5' }}>
-                  <p style={{ fontWeight: 600, color: 'white' }}>
+                <div className="p-5 rounded-xl mt-2" style={{ background: '#FFE8F0', border: '2px solid #F8AFC8' }}>
+                  <p style={{ fontWeight: 600, color: '#1F1B24' }}>
                     Fancy something sweet in the meantime? Our gelato celebration cakes are available now.
                   </p>
                 </div>
@@ -138,8 +138,8 @@ export function RegisterInterestSection() {
                   {loading ? "Registering…" : "🎟️ Register My Interest"}
                 </Button>
 
-                <p className="text-center text-sm" style={{ color: '#717182' }}>
-                  No payment now — you&apos;re just joining the early-access list.
+                <p className="text-center text-sm" style={{ color: '#5C5C6B' }}>
+                  No payment now. You&apos;re just joining the list.
                 </p>
               </form>
             )}

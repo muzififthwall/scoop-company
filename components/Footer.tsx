@@ -12,7 +12,7 @@ export function Footer() {
               <h3 className="text-2xl" style={{ fontWeight: 700, color: '#1F1B24' }}>
                 The Scoop Company
               </h3>
-              <p style={{ color: '#717182' }}>
+              <p style={{ color: '#5C5C6B' }}>
                 A sweet little cinema treat your kids will love. 🍦🎬
               </p>
             </div>

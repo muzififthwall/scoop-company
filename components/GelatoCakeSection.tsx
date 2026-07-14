@@ -239,7 +239,7 @@ export function GelatoCakeSection() {
               </h1>
 
               <p className="text-lg md:text-xl text-[#3D2B1F]/70 mb-8">
-                Hand-crafted by <span className="font-semibold text-[#F8AFC8]">Gelato by Maria</span> — smooth, rich, and totally customisable for your celebration.
+                Hand-crafted by <span className="font-semibold text-[#F8AFC8]">Gelato by Maria</span>. Smooth, rich and totally customisable for your celebration.
               </p>
 
               {GELATO_CAKES_SOLD_OUT ? (
@@ -557,7 +557,7 @@ export function GelatoCakeSection() {
                 </div>
                 {selectedSauces.length === 0 && (
                   <div className="text-sm text-[#3D2B1F]/50 italic text-center p-3 bg-gray-50 rounded-lg mt-4">
-                    No sauces selected yet — choose up to 2!
+                    No sauces selected yet. Choose up to 2!
                   </div>
                 )}
               </div>
@@ -606,7 +606,7 @@ export function GelatoCakeSection() {
                 </div>
                 {selectedToppings.length === 0 && (
                   <div className="text-sm text-[#3D2B1F]/50 italic text-center p-3 bg-gray-50 rounded-lg mt-4">
-                    No toppings selected yet — choose up to 2!
+                    No toppings selected yet. Choose up to 2!
                   </div>
                 )}
               </div>
@@ -618,7 +618,7 @@ export function GelatoCakeSection() {
                     onClick={addToCart}
                     className="w-full bg-[#2E4E3F] hover:bg-[#2E4E3F]/90 text-white py-6 text-lg shadow-2xl"
                   >
-                    {editingItemId ? "Update Gelato Cake" : "Add to Cart"} — £{currentItemPrice.toFixed(2)}
+                    {editingItemId ? "Update Gelato Cake" : "Add to Cart"} · £{currentItemPrice.toFixed(2)}
                   </Button>
                 </div>
               )}

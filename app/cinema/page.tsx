@@ -11,19 +11,19 @@ import { Footer } from "@/components/Footer";
 import { CINEMA_INTEREST_MODE } from "@/lib/cinema-mode";
 
 export const metadata: Metadata = {
-  title: "Kids Cinema Nights — The Scoop Company",
+  title: "Kids Cinema Nights at The Scoop Company",
   description:
-    "After-school films, sweet treats and cosy vibes. Kids Cinema Nights return this winter — register your interest to hear first when tickets go on sale.",
+    "After-school films, sweet treats and cosy vibes. Kids Cinema Nights are back this winter. Register your interest to hear first when tickets go on sale.",
 };
 
 export default function Cinema() {
   return (
     <div className="min-h-screen">
       <HeroSection />
-      <AboutSection />
+      {/* Out of season there is nothing showing, so the film listings are hidden
+          and the page opens on How It Works. Both come back with the dates. */}
+      {!CINEMA_INTEREST_MODE && <AboutSection />}
       <PricingSection />
-      {/* Winter-only event: collect interest out of season, sell tickets in it.
-          Toggle CINEMA_INTEREST_MODE in lib/interest.ts to switch. */}
       {CINEMA_INTEREST_MODE ? <RegisterInterestSection /> : <TicketFormSection />}
       <MenuHighlightsSection />
       <EventDetailsSection />

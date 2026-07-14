@@ -432,7 +432,7 @@ export function TicketFormSection() {
                 {!isAdultOnly && (
                   <div className="p-4 rounded-xl border-2 border-[#F8AFC8]/30 bg-[#F8AFC8]/5">
                     <Label htmlFor="kidTickets" className="flex items-center justify-between mb-2">
-                      <span>🎟️ Kids Tickets — £12 each</span>
+                      <span>🎟️ Kids Tickets · £12 each</span>
                     </Label>
                     <p className="text-sm mb-3" style={{ color: '#717182' }}>Any dessert + any drink</p>
                     <div className="flex items-center gap-4">
@@ -469,7 +469,7 @@ export function TicketFormSection() {
                 {/* Adult Tickets */}
                 <div className="p-4 rounded-xl border-2 border-[#E8A87C]/30 bg-[#E8A87C]/5">
                   <Label htmlFor="adultTickets" className="flex items-center justify-between mb-2">
-                    <span>👨‍👩‍👧 Adult Tickets — £12 each</span>
+                    <span>👨‍👩‍👧 Adult Tickets · £12 each</span>
                   </Label>
                   <p className="text-sm mb-3" style={{ color: '#717182' }}>Same great offer • Must book with child ticket</p>
                   <div className="flex items-center gap-4">

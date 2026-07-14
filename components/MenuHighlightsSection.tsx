@@ -4,28 +4,28 @@ import { Sparkles } from "lucide-react";
 const menuItems = [
   {
     name: "🍦 Scoops & Whippy",
-    description: "Choose your favourite flavours — from classic vanilla to adventurous treats!",
+    description: "Pick your favourite flavours, from classic vanilla to the adventurous stuff.",
     image: "/images/rudolph-cone.jpg",
     color: "#F8AFC8",
     doodle: "⭐"
   },
   {
     name: "🍬 Toppings Galore",
-    description: "Sprinkles, sauces, and fun extras to make your dessert even more special.",
+    description: "Sprinkles, sauces and all the extras on top.",
     image: "/images/gingerbread-whippy.jpg",
     color: "#F38DB5",
     doodle: "✨"
   },
   {
     name: "☕ Hot Drinks for Grown-Ups",
-    description: "Delicious hot drinks for parents and carers — because everyone deserves a treat!",
+    description: "Proper hot drinks for the grown-ups while the film runs.",
     image: "/images/hot-chocolate.jpg",
     color: "#E8A87C",
     doodle: "🌟"
   },
   {
     name: "🎨 Build Your Own Treat",
-    description: "Mix and match flavours, toppings, and extras. Make it exactly how you like it!",
+    description: "Mix and match flavours, toppings and extras. Exactly how you like it.",
     image: "/images/christmas-cone.jpg",
     color: "#D4AF37",
     doodle: "🎈"
@@ -41,8 +41,8 @@ export function MenuHighlightsSection() {
             <h2 className="text-4xl md:text-5xl" style={{ fontWeight: 800, color: '#1F1B24' }}>
               🍨 Sweet Treats Included
             </h2>
-            <p className="text-xl" style={{ color: '#717182' }}>
-              Your ticket includes any dessert and any drink — choose on the day.
+            <p className="text-xl" style={{ color: '#5C5C6B' }}>
+              Your ticket includes any dessert and any drink, chosen on the day.
             </p>
           </div>
 
@@ -80,7 +80,7 @@ export function MenuHighlightsSection() {
           {/* Additional note */}
           <div className="mt-12 text-center p-6 rounded-2xl bg-gradient-to-r from-[#FFE8F0] to-[#FFF5F0]">
             <p className="text-lg" style={{ color: '#1F1B24' }}>
-              Plus all your favourite flavours from our regular menu! 🍦
+              Plus everything else on our regular menu. 🍦
             </p>
           </div>
         </div>

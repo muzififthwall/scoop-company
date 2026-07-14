@@ -6,8 +6,8 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "The Scoop Company — Gelato Celebration Cakes",
-  description: "Hand-crafted gelato cakes, built your way. Pick your flavours, buttercream and toppings — made fresh by Gelato by Maria for birthdays and celebrations.",
+  title: "The Scoop Company | Gelato Celebration Cakes",
+  description: "Hand-crafted gelato cakes, built your way. Pick your flavours, buttercream and toppings. Made fresh by Gelato by Maria for birthdays and celebrations.",
 };
 
 export default function RootLayout({
