@@ -1,3 +1,5 @@
+import { CINEMA_INTEREST_MODE } from "@/lib/cinema-mode";
+
 export default function Navigation() {
   return (
     <header className="sticky top-0 z-50 backdrop-blur-sm border-b border-[#F8AFC8]/30" style={{ background: 'rgba(248, 175, 200, 0.9)' }}>
@@ -15,11 +17,11 @@ export default function Navigation() {
               Order Gelato Cake
             </a>
             <a
-              href="/#tickets"
+              href="/cinema"
               className="inline-block px-4 py-3 rounded-xl border border-white/40 font-semibold no-underline bg-white hover:bg-gray-50 transition-colors"
               style={{ color: '#1F1B24' }}
             >
-              Get Tickets
+              {CINEMA_INTEREST_MODE ? 'Kids Cinema' : 'Get Tickets'}
             </a>
           </div>
         </div>

@@ -2,6 +2,7 @@
 
 import { Button } from "./ui/button";
 import { TICKETS_SOLD_OUT, BOOKING_COMING_SOON } from "@/lib/inventory";
+import { CINEMA_INTEREST_MODE } from "@/lib/cinema-mode";
 
 export function HeroSection() {
   const scrollToTickets = () => {
@@ -52,7 +53,7 @@ export function HeroSection() {
                 className="w-full sm:w-auto text-base px-6 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-60 disabled:cursor-not-allowed"
                 style={{ background: '#F8AFC8', color: 'white', fontWeight: 600 }}
               >
-                🎟️ Book Your Seats
+                {CINEMA_INTEREST_MODE ? '🎟️ Register Your Interest' : '🎟️ Book Your Seats'}
               </Button>
 
               <Button
