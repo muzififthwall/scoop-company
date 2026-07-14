@@ -7,7 +7,7 @@ import { Menu, X } from "lucide-react";
 // in their own markup; keep them in step when a page is added.
 const LINKS = [
   { href: "/", label: "Gelato Cakes", current: true },
-  { href: "/cinema", label: "Kids Cinema" },
+  { href: "/cinema", label: "Scoop Movies" },
   { href: "/cart-hire", label: "Cart Hire" },
   { href: "/wholesale", label: "Wholesale" },
   { href: "/menus", label: "Menus" },
