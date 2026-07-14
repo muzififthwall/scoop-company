@@ -166,7 +166,7 @@ export async function POST(request: NextRequest) {
       line_items: lineItems,
       mode: 'payment',
       success_url: `${request.nextUrl.origin}/success?session_id={CHECKOUT_SESSION_ID}&type=gelato-cake`,
-      cancel_url: `${request.nextUrl.origin}/gelato-cake`,
+      cancel_url: `${request.nextUrl.origin}/#builder`,
       customer_email: customerInfo.email,
       metadata: {
         product_type: 'gelato_cake',

@@ -62,7 +62,7 @@ const TOPPINGS = [
   { id: 'biscoff-crumb', name: 'Biscoff Crumb', emoji: '🍪', dietary: ['Vg', 'S', 'G'] },
 ];
 
-export default function GelatoCakePage() {
+export function GelatoCakeSection() {
   // Current item being built
   const [selectedSize, setSelectedSize] = useState<SizeId>("small");
   const [selectedButtercream, setSelectedButtercream] = useState<ButtercreamId>("small");
