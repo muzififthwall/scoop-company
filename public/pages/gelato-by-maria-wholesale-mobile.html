@@ -246,7 +246,9 @@ figure.rounded{margin:0 20px;border-radius:26px;overflow:hidden}
 .sheet.open{visibility:visible;pointer-events:auto;transition:transform .34s cubic-bezier(.4,0,.2,1),visibility 0s}
 </style><style id="sc-foot">
 /* compact: shops side by side, shared email + icon-only socials underneath */
-.sc-shops{display:grid;grid-template-columns:1fr 1fr;gap:20px 24px;margin-bottom:22px}
+.sc-shops{display:grid;grid-template-columns:1fr 1fr;gap:20px 22px;margin-bottom:22px}
+/* divider between the two shops */
+.sc-shops > div + div{border-left:1px solid rgba(255,255,255,.18);padding-left:22px}
 .sc-shops h4{margin-bottom:8px !important}
 .sc-shops .sc-addr{font-size:.92rem;opacity:.85;line-height:1.5;margin:0 0 6px}
 .sc-shops a{font-size:.92rem;opacity:.9;text-decoration:none;display:inline-block}
