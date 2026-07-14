@@ -38,8 +38,14 @@ export default function Navigation() {
       >
         <div className="max-w-[1180px] mx-auto px-4">
           <div className="flex items-center justify-between gap-3 py-3">
-            <a href="/" className="font-bold no-underline" style={{ color: "#1F1B24" }}>
-              The Scoop Company
+            <a href="/" className="shrink-0" aria-label="The Scoop Company, home">
+              {/* Same logo the four marketing pages use, so the header reads as
+                  one site. The artwork is white, hence the pink bar behind it. */}
+              <img
+                src="/images/scoop-logo.png"
+                alt="The Scoop Company"
+                className="h-7 w-auto"
+              />
             </a>
 
             {/* Desktop: links inline. Mobile: a burger, so nothing can push the
@@ -89,9 +95,9 @@ export default function Navigation() {
       >
         <div className="flex flex-col h-full px-6 pt-5 pb-8">
           <div className="flex items-center justify-between">
-            <span className="font-bold" style={{ color: "#1F1B24" }}>
-              The Scoop Company
-            </span>
+            <a href="/" onClick={() => setOpen(false)} aria-label="The Scoop Company, home">
+              <img src="/images/scoop-logo.png" alt="The Scoop Company" className="h-6 w-auto" />
+            </a>
             <button
               type="button"
               onClick={() => setOpen(false)}
