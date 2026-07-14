@@ -143,8 +143,23 @@ strong{font-weight:600}
   .lb-btn{width:44px;height:44px}
 }
 </style>
-</head>
-<body id="top">
+<style id="sc-sitebar-css">
+.sc-sitebar{position:sticky;top:0;z-index:70;background:var(--ink,#43202F)}
+.sc-sitebar ul{display:flex;align-items:center;gap:0;list-style:none;margin:0 auto;padding:0 12px;
+  max-width:1180px;height:44px;overflow-x:auto;scrollbar-width:none}
+.sc-sitebar ul::-webkit-scrollbar{display:none}
+.sc-sitebar a{display:flex;align-items:center;height:44px;padding:0 14px;white-space:nowrap;
+  font-family:'Outfit',system-ui,sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.01em;
+  color:#FFF7FB;text-decoration:none;opacity:.78;border-bottom:2px solid transparent;
+  transition:opacity .18s ease,background .18s ease}
+.sc-sitebar a:hover,.sc-sitebar a:focus-visible{opacity:1;background:rgba(255,181,215,.16)}
+.sc-sitebar a[aria-current="page"]{opacity:1;color:var(--blossom,#FFB5D7);
+  border-bottom-color:var(--blossom,#FFB5D7)}
+/* the page's own sticky header sits below the site bar */
+.site-head{top:44px !important}
+@media (prefers-reduced-motion:reduce){.sc-sitebar a{transition:none}}
+</style></head>
+<body id="top"><nav class="sc-sitebar" aria-label="The Scoop Company"><ul><li><a href="/">Gelato Cakes</a></li><li><a href="/cinema">Kids Cinema</a></li><li><a href="/cart-hire">Cart Hire</a></li><li><a href="/wholesale">Wholesale</a></li><li><a href="/menus" aria-current="page">Menus</a></li></ul></nav>
 
 <header class="site-head">
   <div class="wrap">
