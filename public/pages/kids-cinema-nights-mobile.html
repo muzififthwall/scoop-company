@@ -332,6 +332,24 @@ figure.rounded{margin:0 20px;border-radius:26px;overflow:hidden}
 </script><style id="sc-sheet-fix">
 .sheet{visibility:hidden;pointer-events:none;transition:transform .34s cubic-bezier(.4,0,.2,1),visibility 0s linear .34s}
 .sheet.open{visibility:visible;pointer-events:auto;transition:transform .34s cubic-bezier(.4,0,.2,1),visibility 0s}
+</style><style id="sc-foot">
+/* compact: shops side by side, shared email + icon-only socials underneath */
+.sc-shops{display:grid;grid-template-columns:1fr 1fr;gap:20px 24px;margin-bottom:22px}
+.sc-shops h4{margin-bottom:8px !important}
+.sc-shops .sc-addr{font-size:.92rem;opacity:.85;line-height:1.5;margin:0 0 6px}
+.sc-shops a{font-size:.92rem;opacity:.9;text-decoration:none;display:inline-block}
+.sc-shops a:hover{opacity:1;text-decoration:underline;text-underline-offset:3px}
+.sc-contact{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;
+  padding-top:18px;border-top:1px solid rgba(255,255,255,.16)}
+.sc-email{display:inline-flex;align-items:center;gap:9px;font-size:.92rem;opacity:.9;text-decoration:none}
+.sc-email:hover{opacity:1}
+.sc-email svg{width:17px;height:17px;flex:none}
+.sc-social{display:flex;gap:8px}
+.sc-social a{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;
+  border-radius:11px;border:1px solid rgba(255,255,255,.22);color:#fff;opacity:.85;transition:opacity .18s,background .18s}
+.sc-social a:hover{opacity:1;background:rgba(255,255,255,.12)}
+.sc-social svg{width:18px;height:18px}
+@media (prefers-reduced-motion:reduce){.sc-social a{transition:none}}
 </style></head>
 <body id="top">
 
@@ -448,21 +466,9 @@ figure.rounded{margin:0 20px;border-radius:26px;overflow:hidden}
 <footer class="foot">
   <span class="sheet-brand" style="color:#fff;font-size:1.8rem;display:block;margin-bottom:14px">The Scoop Company</span>
   <p>Warlingham's cherry-blossom dessert parlour, and a cosy winter cinema treat the kids will love.</p>
-  <h4>Warlingham</h4>
-  <ul>
-    <li>369 Limpsfield Road, Warlingham CR6 9HA</li>
-    <li><a href="tel:+441883338331"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg>01883 338331</a></li>
-    <li><a href='https://deliveroo.co.uk/menu/london/warlingham/the-scoop-company-369-limpsfield-road' target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>Order on Deliveroo</a></li>
-  <li><a href="mailto:thescoopcompany@mail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>thescoopcompany@mail.com</a></li>
-</ul>
-<h4>Oxted</h4>
-<ul>
-<li>55 Station Rd E, Oxted RH8 0AX</li>
-<li><a href="tel:+441883912670"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg>01883 912670</a></li>
-<li><a href="mailto:thescoopcompany@mail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>thescoopcompany@mail.com</a></li>
-</ul>
-  <h4>Follow along</h4>
-  <ul><li><a href="https://www.instagram.com/thescoopcompany_" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.4A4 4 0 1 1 12.6 8 4 4 0 0 1 16 11.4z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>@thescoopcompany_</a></li></ul>
+  <div class="sc-shops"><div><h4>Warlingham</h4><p class="sc-addr">369 Limpsfield Road<br>Warlingham CR6 9HA</p><a href="tel:+441883338331">01883 338331</a></div><div><h4>Oxted</h4><p class="sc-addr">55 Station Rd E<br>Oxted RH8 0AX</p><a href="tel:+441883912670">01883 912670</a></div></div><div class="sc-contact"><a class="sc-email" href="mailto:thescoopcompany@mail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m21 6-9 6-9-6"/></svg>thescoopcompany@mail.com</a><div class="sc-social"><a href="https://www.instagram.com/thescoopcompany_" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a><a href="https://deliveroo.co.uk/menu/london/warlingham/the-scoop-company-369-limpsfield-road" target="_blank" rel="noopener" aria-label="Order on Deliveroo" title="Order on Deliveroo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 11a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></a></div></div>
+
+  
   <div class="fine">© 2026 The Scoop Company, Warlingham &amp; Oxted.</div>
 </footer>
 <div class="actionbar">
