@@ -33,7 +33,7 @@ async function emailShop(o: CakeOrder): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) return;
 
-  const to = process.env.ORDER_NOTIFY_EMAIL || 'thescoopcompany@mail.com';
+  const to = process.env.ORDER_NOTIFY_EMAIL || 'thescoopcompany1@gmail.com';
   // Must be a Resend-verified sender; onboarding@resend.dev works before the
   // domain is verified.
   const from = process.env.ORDER_NOTIFY_FROM || 'onboarding@resend.dev';
