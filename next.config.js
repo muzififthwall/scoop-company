@@ -9,6 +9,7 @@ const MARKETING_PAGES = [
   { route: '/cart-hire', file: 'gelato-cart-hire' },
   { route: '/wholesale', file: 'gelato-by-maria-wholesale' },
   { route: '/menus', file: 'scoop-menus' },
+  { route: '/careers', file: 'scoop-careers' },
 ];
 
 const nextConfig = {
