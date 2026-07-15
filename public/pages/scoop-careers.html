@@ -2,7 +2,16 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><script>
+(function () {
+  try {
+    if (new URLSearchParams(location.search).has('nosw')) return;
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      location.replace('/careers/mobile' + location.hash);
+    }
+  } catch (e) {}
+})();
+</script>
 <meta name="theme-color" content="#FFB5D7">
 <title>Join the Team, We're Hiring | The Scoop Company</title>
 <meta name="description" content="We're hiring scoopers at The Scoop Company, Oxted &amp; Warlingham, home of Gelato Parlour of the Year 2025. Part-time, full-time, weekend, seasonal and assistant manager roles. Apply online.">
