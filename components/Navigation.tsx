@@ -11,6 +11,7 @@ const LINKS = [
   { href: "/cart-hire", label: "Cart Hire" },
   { href: "/wholesale", label: "Wholesale" },
   { href: "/menus", label: "Menus" },
+  { href: "/careers", label: "Careers" },
 ];
 
 // The marketing pages' design tokens, so both halves of the site match.

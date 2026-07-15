@@ -668,6 +668,9 @@ export function GelatoCakeSection() {
       <footer className="py-8 text-center text-[#3D2B1F]/60 border-t border-[#E3C565]/20">
         <p>The Scoop Company · Gelato by Maria</p>
         <p className="text-sm mt-2">Making celebrations sweeter, one gelato cake at a time 🎉</p>
+        <p className="text-sm mt-2">
+          <a href="/careers" className="underline underline-offset-2">We&apos;re hiring — join the team</a>
+        </p>
         <div className="flex justify-center gap-4 text-xs text-[#3D2B1F]/50 mt-4">
           <span>🍦 Hand-crafted gelato</span>
           <span>•</span>
