@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { confirmBooking, releaseReservation } from '@/lib/inventory';
+import { notifyCakeOrder } from '@/lib/orderNotify';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_placeholder', {
   apiVersion: '2025-02-24.acacia',
@@ -59,10 +60,19 @@ export async function POST(request: NextRequest) {
             orderSummary: metadata.order_summary,
             totalAmount: metadata.total_amount
           });
-          // In production, you might want to:
-          // - Store the order in a database
-          // - Send a confirmation email
-          // - Notify the kitchen/staff
+
+          // Notify the shop: email + push into Scoop Inbox. Both are best-effort
+          // and no-op until their env vars are set, so they never block the order.
+          await notifyCakeOrder({
+            sessionId: session.id,
+            customerName: metadata.customer_name,
+            customerEmail: session.customer_email,
+            customerPhone: metadata.customer_phone || null,
+            collectionDate: metadata.collection_date_formatted,
+            deliveryOption: metadata.delivery_option,
+            orderSummary: metadata.order_summary,
+            totalAmount: metadata.total_amount,
+          });
         } else if (productType === 'yule_log') {
           // Legacy: Handle yule log order - no inventory tracking needed
           console.log('Yule Log order confirmed:', {
