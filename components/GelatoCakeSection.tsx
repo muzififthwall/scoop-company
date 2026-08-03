@@ -55,12 +55,11 @@ const SAUCES = [
 const TOPPINGS = [
   { id: 'sprinkles', name: 'Sprinkles', emoji: '🌈', dietary: ['Vg', 'GF'] },
   { id: 'oreo-crumb', name: 'Oreo Crumb', emoji: '🍪', dietary: ['Vg', 'S', 'G'] },
-  { id: 'unicorn-poop', name: 'Unicorn Poop', emoji: '🦄', dietary: ['GF'] },
   { id: 'mixed-nuts', name: 'Mixed Nuts', emoji: '🥜', dietary: ['Vg', 'N', 'GF'] },
   { id: 'biscoff-crumb', name: 'Biscoff Crumb', emoji: '🍪', dietary: ['Vg', 'S', 'G'] },
   { id: 'raspberry-crisp', name: 'Raspberry Crisp', emoji: '🍓', dietary: ['Vg', 'GF'] },
   { id: 'strawberry-popping-candy', name: 'Strawberry Popping Candy', emoji: '🍬', dietary: ['Vg', 'GF'] },
-  { id: 'marshmallows', name: 'Marshmallows', emoji: '☁️', dietary: ['GF'] },
+  { id: 'marshmallows', name: 'Mini Marshmallows', emoji: '☁️', dietary: ['GF'] },
 ];
 
 export function GelatoCakeSection() {
@@ -595,6 +594,18 @@ export function GelatoCakeSection() {
                         <div className="flex flex-col items-center gap-2">
                           <span className="text-3xl">{topping.emoji}</span>
                           <span className="text-sm font-medium text-center text-[#3D2B1F]">{topping.name}</span>
+                          {topping.dietary && topping.dietary.length > 0 && (
+                            <div className="flex flex-wrap gap-1 justify-center">
+                              {topping.dietary.map((d) => (
+                                <span
+                                  key={d}
+                                  className="inline-block px-1.5 py-0.5 rounded text-[10px] font-medium bg-[#3D2B1F]/5 text-[#3D2B1F]/60"
+                                >
+                                  {d}
+                                </span>
+                              ))}
+                            </div>
+                          )}
                           {isSelected && (
                             <div className="absolute top-2 right-2 w-6 h-6 bg-[#F8AFC8] rounded-full flex items-center justify-center text-white text-xs">
                               <Check className="w-4 h-4" />
