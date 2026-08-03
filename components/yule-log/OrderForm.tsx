@@ -229,7 +229,8 @@ export function OrderForm({ cart, onBack }: OrderFormProps) {
                   : "border-[#E3C565]/20 hover:border-[#E3C565]/50"
               }`}
             >
-              🏪 Collect In-Store
+              <span className="block">🏪 Collect from Oxted</span>
+              <span className="block text-sm text-[#3D2B1F]/60 mt-0.5">55 Station Road East, Oxted RH8 0AX</span>
             </button>
           </div>
           <div className="p-3 bg-[#E3C565]/10 rounded-lg border border-[#E3C565]/30">

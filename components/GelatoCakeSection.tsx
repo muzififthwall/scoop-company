@@ -57,9 +57,10 @@ const TOPPINGS = [
   { id: 'oreo-crumb', name: 'Oreo Crumb', emoji: '🍪', dietary: ['Vg', 'S', 'G'] },
   { id: 'unicorn-poop', name: 'Unicorn Poop', emoji: '🦄', dietary: ['GF'] },
   { id: 'mixed-nuts', name: 'Mixed Nuts', emoji: '🥜', dietary: ['Vg', 'N', 'GF'] },
-  { id: 'caramelised-nuts', name: 'Caramelised Nuts', emoji: '🥜', dietary: ['Vg', 'N', 'GF'] },
-  { id: 'honeycomb-bites', name: 'Honeycomb Bites', emoji: '🍯', dietary: ['Vg', 'GF'] },
   { id: 'biscoff-crumb', name: 'Biscoff Crumb', emoji: '🍪', dietary: ['Vg', 'S', 'G'] },
+  { id: 'raspberry-crisp', name: 'Raspberry Crisp', emoji: '🍓', dietary: ['Vg', 'GF'] },
+  { id: 'strawberry-popping-candy', name: 'Strawberry Popping Candy', emoji: '🍬', dietary: ['Vg', 'GF'] },
+  { id: 'marshmallows', name: 'Marshmallows', emoji: '☁️', dietary: ['GF'] },
 ];
 
 export function GelatoCakeSection() {
