@@ -8,7 +8,7 @@ import { OrderSummary, CartItem } from "@/components/yule-log/OrderSummary";
 import { OrderForm } from "@/components/yule-log/OrderForm";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Cake, ChevronDown, Check } from "lucide-react";
-import { GELATO_CAKES_SOLD_OUT } from "@/lib/inventory";
+import { GELATO_CAKES_SOLD_OUT, GELATO_CAKES_EARLIEST_COLLECTION } from "@/lib/inventory";
 import { StickyMobileHeader } from "@/components/cake/StickyMobileHeader";
 
 // Size options with pricing
@@ -200,6 +200,21 @@ export function GelatoCakeSection() {
     document.getElementById("builder")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Only treat the "closed until" date as active while it's still in the future.
+  // Once it passes, the banner disappears and the date picker reverts to the
+  // normal 72-hour rule on its own, with nothing to change by hand.
+  const earliestCollectionActive =
+    !!GELATO_CAKES_EARLIEST_COLLECTION &&
+    new Date(GELATO_CAKES_EARLIEST_COLLECTION + "T23:59:59").getTime() >= Date.now();
+
+  const earliestCollectionLabel = earliestCollectionActive
+    ? new Date(GELATO_CAKES_EARLIEST_COLLECTION + "T12:00:00").toLocaleDateString("en-GB", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+      })
+    : "";
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#FFF8FB] via-[#F8AFC8]/5 to-[#FFF8FB]">
       {/* Sticky Mobile Header */}
@@ -241,6 +256,17 @@ export function GelatoCakeSection() {
               <p className="text-lg md:text-xl text-[#3D2B1F]/70 mb-8">
                 Hand-crafted by <span className="font-semibold text-[#F8AFC8]">Gelato by Maria</span>. Smooth, rich and totally customisable for your celebration.
               </p>
+
+              {earliestCollectionActive && !GELATO_CAKES_SOLD_OUT && (
+                <div className="mb-8 bg-[#E3C565]/15 border border-[#E3C565]/50 rounded-xl p-4 text-left">
+                  <p className="text-[#3D2B1F] font-semibold text-sm sm:text-base">
+                    🗓️ Next available collection: {earliestCollectionLabel}
+                  </p>
+                  <p className="text-[#3D2B1F]/70 text-sm mt-1">
+                    We&apos;re taking a short break, so any order you place now will be ready to collect from this date onwards.
+                  </p>
+                </div>
+              )}
 
               {GELATO_CAKES_SOLD_OUT ? (
                 <div className="bg-red-100 border-2 border-red-400 rounded-xl p-6 text-center">
@@ -671,6 +697,7 @@ export function GelatoCakeSection() {
             <OrderForm
               cart={cart}
               onBack={() => setShowForm(false)}
+              earliestCollection={earliestCollectionActive ? GELATO_CAKES_EARLIEST_COLLECTION : undefined}
             />
           </div>
         </section>

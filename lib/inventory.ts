@@ -44,6 +44,13 @@ export const YULE_LOGS_SOLD_OUT = true;
 // Global sold out flag for Gelato Cakes - set to true to disable all Gelato Cake orders
 export const GELATO_CAKES_SOLD_OUT = false;
 
+// Earliest date a gelato cake can be collected, as 'YYYY-MM-DD'.
+// Use this to block orders during a holiday/closure (e.g. when Maria is away).
+// It shows a banner and stops the date picker offering any earlier date, so no
+// one can build and pay for a cake they can't collect. Set to '' to switch this
+// off and revert to the normal 72-hours-notice rule.
+export const GELATO_CAKES_EARLIEST_COLLECTION = '2026-08-31';
+
 // Types
 export interface InventoryData {
   kid_tickets_sold: number;

@@ -14,6 +14,9 @@ import type { CartItem } from "./OrderSummary";
 interface OrderFormProps {
   cart: CartItem[];
   onBack: () => void;
+  // Optional hard floor for the collection date, as 'YYYY-MM-DD'. When set, the
+  // calendar won't offer any earlier date (e.g. during a holiday closure).
+  earliestCollection?: string;
 }
 
 export interface FormData {
@@ -42,7 +45,7 @@ const calculateItemPrice = (item: CartItem) => {
   return sizePrice + buttercreamPrice;
 };
 
-export function OrderForm({ cart, onBack }: OrderFormProps) {
+export function OrderForm({ cart, onBack, earliestCollection }: OrderFormProps) {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -57,6 +60,19 @@ export function OrderForm({ cart, onBack }: OrderFormProps) {
 
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 3); // 72 hours from now
+  // Raise the floor if collection is closed until a later date (e.g. holiday).
+  if (earliestCollection) {
+    const floor = new Date(earliestCollection + "T00:00:00");
+    if (floor.getTime() > minDate.getTime()) minDate.setTime(floor.getTime());
+  }
+
+  const earliestCollectionLabel = earliestCollection
+    ? new Date(earliestCollection + "T12:00:00").toLocaleDateString("en-GB", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+      })
+    : "";
 
   // Calculate cart total for Meta Pixel tracking
   const cartTotal = cart.reduce((total, item) => {
@@ -212,7 +228,9 @@ export function OrderForm({ cart, onBack }: OrderFormProps) {
           </Popover>
           <p className="text-xs text-[#3D2B1F]/60 flex items-center gap-1">
             <Info className="w-3 h-3" />
-            Minimum 72 hours notice required
+            {earliestCollection
+              ? `Earliest collection is ${earliestCollectionLabel} (we're on a short break)`
+              : "Minimum 72 hours notice required"}
           </p>
         </div>
 
